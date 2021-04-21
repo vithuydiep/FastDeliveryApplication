@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.HomeAdmin">
+
+
+    <RelativeLayout
+        android:id="@+id/toplayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background">
+        <EditText
+            android:id="@+id/timkiem"
+            android:drawableLeft="@drawable/search1"
+            android:drawablePadding="10dp"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Tìm kiếm"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textColorHint="#FFF"
+            android:backgroundTint="@color/white"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btnlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toplayout"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btntaixe"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/driver"
+            android:text="Tài xế"
+            android:textSize="13dp"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/btndonhang"
+            android:backgroundTint="@color/white"
+            android:layout_marginLeft="10dp"
+            android:drawableTop="@drawable/order1"
+            android:layout_toRightOf="@id/btntaixe"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Đơn hàng"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnchuyenhang"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/delivery"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/btndonhang"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Cuốc hàng"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnnguoidung"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/user"
+            android:layout_toRightOf="@id/btnchuyenhang"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="13dp"
+            android:text="Người dùng"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/chucnangkhac"
+        android:drawableLeft="@drawable/other"
+        android:drawablePadding="10dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btnlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Chức năng khác"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:background="@color/background"/>
+    <RelativeLayout
+        android:id="@+id/btnlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chucnangkhac"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btnthongke"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/chart"
+            android:text="Biểu đồ"
+            android:textSize="13dp"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/btngiaodich"
+            android:backgroundTint="@color/white"
+            android:layout_marginLeft="10dp"
+            android:drawableTop="@drawable/deal"
+            android:layout_toRightOf="@id/btnthongke"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Giao dịch"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btntaokhuyenmai"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/delivery"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/btngiaodich"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Quà tặng"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btntaothongbao"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/send"
+            android:layout_toRightOf="@id/btntaokhuyenmai"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="Thông báo"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btncms1"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/comingsoon"
+            android:layout_below="@+id/btnthongke"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="Chưa mở"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btncms2"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/comingsoon"
+            android:layout_toRightOf="@id/btncms1"
+            android:layout_below="@+id/btnthongke"
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="Chưa mở"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btncms3"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/comingsoon"
+            android:layout_toRightOf="@id/btncms2"
+            android:layout_below="@+id/btnthongke"
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="Chưa mở"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btncms4"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/comingsoon"
+            android:layout_toRightOf="@id/btncms3"
+            android:layout_below="@+id/btnthongke"
+            android:layout_marginLeft="10dp"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:text="Chưa mở"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
