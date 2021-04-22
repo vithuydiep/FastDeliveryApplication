@@ -18,7 +18,7 @@ Final project of **Software Project Management** and **Software Engineering** <b
 - Programming language: **Java**
 - Database:
   - Relational database management system : **MySQL 5.7**
-  - Object-relational mapping : **Hibernate 5.4.10.Final**
+  - Object-relational mapping : **PHP MYSQLLi**
 - Integrated development environment (IDE) : **Android Studio**
 
 <br/>
