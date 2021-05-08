@@ -54,6 +54,14 @@
 				echo "Something went wrong";
 			}
 			break;
+		case "getDataCustomer":
+			$query = "SELECT * FROM user where typeofuser = 'CUSTOMER' ";
+			$data = mysqli_query($connect, $query);
+			$arrayUser = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+			array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']));}
+			echo json_encode($arrayUser);
+			break;
 		default:
 			echo "Lỗi";
 			break;
