@@ -13,13 +13,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.TVK.Ultis.IGetAPICallback;
 import com.example.TVK.Ultis.IViewUltis;
+import com.example.TVK.View.CustomerAdapter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Customer extends User {
+public class Customer extends User implements ICustomer , Serializable {
     private static Customer instance;
     private IGetAPICallback iGetAPICallback;
 
@@ -81,6 +86,60 @@ public class Customer extends User {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
         requestQueue.add(jsonArrayRequest);
     }
+
+    @Override
+    public void getAllDataCustomer(Context context, ArrayList<Customer> customerArrayList, CustomerAdapter adapter) {
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+            StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            JSONArray array = null;
+                            try {
+                                array = new JSONArray(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            for (int i=0 ; i< array.length(); i++)
+                            {
+                                try {
+                                    JSONObject object = array.getJSONObject(i);
+                                    customerArrayList.add(new Customer(
+                                            object.getInt("ID"),
+                                            object.getString("Name"),
+                                            object.getString("Gender"),
+                                            object.getString("Phone"),
+                                            object.getString("Address"),
+                                            object.getString("Email"),
+                                            object.getString("Username"),
+                                            object.getString("Password"),
+                                            object.getString("ActivationCode"),
+                                            object.getString("ResetPasswordCode"),
+                                            object.getString("State"),
+                                            object.getString("TypeUser")
+                                    ));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("type","getDataCustomer");
+                    return params;
+                }
+            };
+            requestQueue.add(jsonArrayRequest);
+    }
+
 
     public static class CustomerBuilder {
         private int idUser;

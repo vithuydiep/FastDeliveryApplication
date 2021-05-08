@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Fragment.AddNewDriver">
+
+    <Button
+        android:id="@+id/btncancel_add"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btncancel"
+        android:fontFamily="@font/poppins"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintEnd_toStartOf="@+id/btnconfirm_add"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="162dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="304dp"
+        android:layout_marginBottom="620dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="162dp"
+        android:layout_height="189dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="179dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="312dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Add new driver"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtcusphone_add"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Phone"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName11" />
+
+    <EditText
+        android:id="@+id/txtcusemail_add"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcusphone_add" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName12"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Driver's Lisence"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
+
+    <EditText
+        android:id="@+id/txtcusname_add"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName8"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="ID Number"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcusemail_add" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName11"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Gender"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcusname_add" />
+
+    <Button
+        android:id="@+id/btnconfirm_add"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/btnconfirm"
+        android:fontFamily="@font/poppins"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

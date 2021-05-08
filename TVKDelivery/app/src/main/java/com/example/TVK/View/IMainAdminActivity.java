@@ -1,4 +1,10 @@
 package com.example.TVK.View;
 
-public class IMainAdminActivity {
+import androidx.fragment.app.Fragment;
+
+import com.example.TVK.Model.User.Customer;
+
+public interface IMainAdminActivity {
+    void loadFragment(Fragment fragment);
+    void gotoDetailFragment(Customer customer);
 }
