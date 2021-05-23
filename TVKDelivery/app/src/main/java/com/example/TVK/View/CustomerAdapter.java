@@ -29,8 +29,9 @@ public class CustomerAdapter extends BaseAdapter {
 
     public interface IClickItemListener
     {
-        void onClickItemCustomer(Customer customer);
+            void onClickItemCustomer(Customer customer);
     }
+
 
 
     public CustomerAdapter(Context context, int layout, List<Customer> customerList, IClickItemListener iClickItemListener) {

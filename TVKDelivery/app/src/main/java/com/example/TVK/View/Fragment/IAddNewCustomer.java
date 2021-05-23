@@ -1,9 +1,15 @@
 package com.example.TVK.View.Fragment;
 
+import android.widget.EditText;
+
 import com.example.TVK.Ultis.IViewUltis;
 
 public interface IAddNewCustomer extends IViewUltis {
-    void open_dialog(int gravity);
-    void combackLoginActivity();
-    void sendOTPMessage(String phone_number);
+    void toastinfor(String message);
+    EditText getEdittext(String nameedittext);
+    void sendSms(String toPhoneNumber, String message);
+
+
+
+
 }

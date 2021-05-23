@@ -20,4 +20,33 @@ class User{
 			$this->TypeUser=$typeofuser;
 		}
 	}
+/**
+ * 
+ */
+class Contact 
+{
+	
+	function __construct($id,$iduser,$title,$message)
+	{
+		$this->ID= $id;
+		$this->IDUser= $iduser;
+		$this->Title = $title;
+		$this->Message = $message;
+	}
+}
+
+/**
+ * 
+ */
+class Feedback
+{
+	
+	function __construct($id, $idorder, $rating, $note)
+	{
+		$this->ID= $id;
+		$this->IDOrder= $idorder;
+		$this->Rating = $rating;
+		$this->Note = $note;
+	}
+}
 ?>

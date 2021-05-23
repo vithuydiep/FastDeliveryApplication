@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 21, 2021 at 03:15 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 23, 2021 lúc 05:57 PM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `delivery`
+-- Cơ sở dữ liệu: `delivery`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Cấu trúc bảng cho bảng `bill`
 --
 
 CREATE TABLE `bill` (
@@ -48,10 +48,17 @@ CREATE TABLE `bill` (
   `typeoforder` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `bill`
+--
+
+INSERT INTO `bill` (`id`, `iduser`, `pickupaddress`, `deliveryaddress`, `mass`, `receivername`, `receiverphone`, `description`, `collectstate`, `collectmoney`, `postage`, `total`, `typeofservice`, `state`, `note`, `idpayment`, `idshipment`, `typeoforder`) VALUES
+(1, 129, 'TPHCM', 'Lấp Vò, Đồng Tháp', 1.2, 'Diệp Thúy Vi', '898018964', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Cấu trúc bảng cho bảng `contact`
 --
 
 CREATE TABLE `contact` (
@@ -61,10 +68,17 @@ CREATE TABLE `contact` (
   `content` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `contact`
+--
+
+INSERT INTO `contact` (`id`, `iduser`, `title`, `content`) VALUES
+(1, 134, 'Hello', 'Can you tell me about your information');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedback`
+-- Cấu trúc bảng cho bảng `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -74,10 +88,17 @@ CREATE TABLE `feedback` (
   `ghichu` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `idorder`, `danhgiadichvu`, `ghichu`) VALUES
+(1, 1, 4, 'Fast delivery, i wil use it next time');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification`
+-- Cấu trúc bảng cho bảng `notification`
 --
 
 CREATE TABLE `notification` (
@@ -89,7 +110,7 @@ CREATE TABLE `notification` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Cấu trúc bảng cho bảng `payment`
 --
 
 CREATE TABLE `payment` (
@@ -103,7 +124,7 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `policy`
+-- Cấu trúc bảng cho bảng `policy`
 --
 
 CREATE TABLE `policy` (
@@ -115,7 +136,7 @@ CREATE TABLE `policy` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shipment`
+-- Cấu trúc bảng cho bảng `shipment`
 --
 
 CREATE TABLE `shipment` (
@@ -131,7 +152,7 @@ CREATE TABLE `shipment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
@@ -152,18 +173,30 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `gender`, `phone`, `address`, `email`, `idnumber`, `username`, `password`, `activationcode`, `resetpasswordcode`, `state`, `driverlicensenumber`, `typeofuser`) VALUES
-(1, 'Đinh Tấn Tú', 'Nam', '123123123', '', NULL, NULL, 'tantudinh812', 'f5bbc8de146c67b44babbf4e6584cc0', NULL, '192093', NULL, NULL, 'ADMIN'),
-(46, NULL, NULL, '123123123', NULL, NULL, NULL, 'vidiep123', 'bb2d91d0fbbebe8719509ed0f865c63f', '866328', '972030', 'consudung', NULL, 'CUSTOMER'),
-(51, NULL, NULL, '327644657', NULL, NULL, NULL, 'dinhtantu812', 'bb2d91d0fbbebe8719509ed0f865c63f', '192093', '192093', 'consudung', NULL, 'CUSTOMER');
+(52, 'Đinh Tấn Tú', '', '327644657', NULL, NULL, NULL, 'dinhtantu', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER'),
+(53, 'Võ Hồ An Khang', NULL, '896521486', NULL, NULL, NULL, 'khangvo123', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER'),
+(56, NULL, NULL, NULL, NULL, NULL, NULL, 'diepthuyvi', '25f9e794323b453885f5181f1b624db', '532082', '882700', 'consudung', NULL, 'ADMIN'),
+(57, 'Diệp Thúy Vi', 'Nữ', '', 'Đồng Tháp', 'diepvi2810@gmail.com', NULL, 'vivivivi', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'DRIVER'),
+(115, 'Duong Thanh Trang', NULL, '086555656', NULL, NULL, NULL, 'Trang127', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'DRIVER'),
+(129, 'Diep Thuy Vi', NULL, NULL, NULL, NULL, NULL, 'vi116', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'DRIVER'),
+(134, 'Diep Vi', NULL, NULL, NULL, NULL, NULL, 'vi188', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER'),
+(136, 'Boi Tuyen', NULL, '898018964', NULL, NULL, NULL, 'tuyen191', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'block', NULL, 'CUSTOMER'),
+(137, 'Cao Thi Mai Tram', NULL, '902441480', NULL, NULL, NULL, 'tram185', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER'),
+(140, 'Duong Boi Tuyen', NULL, '889562225', NULL, NULL, NULL, 'tuyen101', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER'),
+(142, 'Duong Gia Han', 'Fem', '896125368', 'TPHCM', 'giahan@gmail.com', '123123123', 'han88', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'block', '123123123', 'DRIVER'),
+(144, 'Duong Thanh Trang', 'Fem', '863125964', 'Can Tho', 'tranglun@gmail.com', '123456789', 'trang41', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', '123123124', 'DRIVER'),
+(145, 'Duong Thanh Trang', 'fem', '863125961', 'Can Tho', 'tranglun@gmail.com', '123456789', 'trang150', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', '123123124', 'DRIVER'),
+(147, 'Diep Thuy Vi', 'Fem', '898018962', 'Dong Thap', 'diepvi2810@gmail.com', '123123121', 'vi129', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'block', '123123124', 'DRIVER'),
+(148, 'Duong Gia Han', NULL, '898018960', NULL, NULL, NULL, 'han9', '25f9e794323b453885f5181f1b624db', NULL, NULL, 'consudung', NULL, 'CUSTOMER');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet`
+-- Cấu trúc bảng cho bảng `wallet`
 --
 
 CREATE TABLE `wallet` (
@@ -174,11 +207,11 @@ CREATE TABLE `wallet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `bill`
+-- Chỉ mục cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
@@ -187,122 +220,122 @@ ALTER TABLE `bill`
   ADD KEY `idshipment` (`idshipment`);
 
 --
--- Indexes for table `contact`
+-- Chỉ mục cho bảng `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`),
   ADD KEY `iduser` (`iduser`);
 
 --
--- Indexes for table `feedback`
+-- Chỉ mục cho bảng `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idorder` (`idorder`);
 
 --
--- Indexes for table `notification`
+-- Chỉ mục cho bảng `notification`
 --
 ALTER TABLE `notification`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payment`
+-- Chỉ mục cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idwallet` (`idwallet`);
 
 --
--- Indexes for table `policy`
+-- Chỉ mục cho bảng `policy`
 --
 ALTER TABLE `policy`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `shipment`
+-- Chỉ mục cho bảng `shipment`
 --
 ALTER TABLE `shipment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `iddriver` (`iddriver`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wallet`
+-- Chỉ mục cho bảng `wallet`
 --
 ALTER TABLE `wallet`
   ADD PRIMARY KEY (`id`),
   ADD KEY `iduser` (`iduser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bill`
+-- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contact`
+-- AUTO_INCREMENT cho bảng `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `feedback`
+-- AUTO_INCREMENT cho bảng `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `notification`
+-- AUTO_INCREMENT cho bảng `notification`
 --
 ALTER TABLE `notification`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT cho bảng `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `policy`
+-- AUTO_INCREMENT cho bảng `policy`
 --
 ALTER TABLE `policy`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `shipment`
+-- AUTO_INCREMENT cho bảng `shipment`
 --
 ALTER TABLE `shipment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
--- AUTO_INCREMENT for table `wallet`
+-- AUTO_INCREMENT cho bảng `wallet`
 --
 ALTER TABLE `wallet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `bill`
+-- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`idpayment`) REFERENCES `payment` (`id`),
@@ -310,31 +343,31 @@ ALTER TABLE `bill`
   ADD CONSTRAINT `bill_ibfk_3` FOREIGN KEY (`idshipment`) REFERENCES `shipment` (`id`);
 
 --
--- Constraints for table `contact`
+-- Các ràng buộc cho bảng `contact`
 --
 ALTER TABLE `contact`
   ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `feedback`
+-- Các ràng buộc cho bảng `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`idorder`) REFERENCES `bill` (`id`);
 
 --
--- Constraints for table `payment`
+-- Các ràng buộc cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`idwallet`) REFERENCES `wallet` (`id`);
 
 --
--- Constraints for table `shipment`
+-- Các ràng buộc cho bảng `shipment`
 --
 ALTER TABLE `shipment`
   ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`iddriver`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `wallet`
+-- Các ràng buộc cho bảng `wallet`
 --
 ALTER TABLE `wallet`
   ADD CONSTRAINT `wallet_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);

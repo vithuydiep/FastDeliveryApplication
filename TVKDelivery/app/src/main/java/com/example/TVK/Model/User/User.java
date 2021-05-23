@@ -119,6 +119,20 @@ public class User implements IUser{
         this.typeOfUser = typeOfUser;
     }
 
+    public User(String fullName, String gender, String phone, String address, String email) {
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+    }
+
+    public User(String fullName, String phone, String email) {
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public static User getInstance() {
         if (instance == null) {
             instance = new User();

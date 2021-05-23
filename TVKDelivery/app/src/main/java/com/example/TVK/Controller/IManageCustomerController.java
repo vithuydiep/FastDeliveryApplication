@@ -7,7 +7,10 @@ import com.example.TVK.View.CustomerAdapter;
 
 public interface IManageCustomerController {
     CustomerAdapter loadadapter(Context context);
-    void OnCheckDataAndSendOTP(EditText txtUsername, EditText txtPassword, EditText txtConfirmPassword, EditText txtPhone, Context context);
-    void OnAddNewCustomer(EditText txtUsername, EditText txtPassword, EditText txtPhone,String otp,Context context);
+    void OnCheckData(EditText txtcusname_add, EditText txtcusphone_add, EditText txtcusemail_add, Context context);
+    void OnAddNewCustomer(String txtcusname_add, String txtcusphone_add, String txtcusemail_add,Context context);
+    boolean isCheck();
+    void updateStateCustomer(Context context, String phone, String state);
+
 
 }

@@ -56,6 +56,7 @@
         android:hint="Phone"
         android:inputType="number"
         android:paddingLeft="52dp"
+        android:paddingRight="15dp"
         android:phoneNumber="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,7 @@
         android:hint="New password"
         android:inputType="textPassword"
         android:paddingLeft="40dp"
+        android:paddingRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtsdt" />
@@ -85,6 +87,7 @@
         android:hint="Confirm password"
         android:inputType="textPassword"
         android:paddingLeft="40dp"
+        android:paddingRight="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPass" />

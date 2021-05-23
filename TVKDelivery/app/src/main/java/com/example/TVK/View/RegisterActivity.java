@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
             hideKeyboard(v,hasFocus);
         });
 
-        
+
     }
     private void anhxa(){
         btnquaylai = findViewById(R.id.btBack);

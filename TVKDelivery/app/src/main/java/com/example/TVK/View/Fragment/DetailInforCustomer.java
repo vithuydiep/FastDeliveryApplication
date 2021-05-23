@@ -1,15 +1,21 @@
 package com.example.TVK.View.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.TVK.Controller.IManageCustomerController;
+import com.example.TVK.Controller.ManageCustomerController;
 import com.example.TVK.Model.User.Customer;
 import com.example.TVK.R;
 
@@ -20,8 +26,16 @@ import com.example.TVK.R;
  */
 public class DetailInforCustomer extends Fragment {
     EditText txtname, txtgender, txtphone, txtemail, txtaddr, txtusername;
-    ImageButton btnback;
+    ImageButton btnback, btnedit;
+    Switch state;
+    Dialog dialog;
     public static final String TAG = DetailInforCustomer.class.getName();
+    TextView textView;
+    Button ok ;
+    Button cancel;
+    int id;
+    String statecus;
+    IManageCustomerController iManageCustomerController;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,14 +90,11 @@ public class DetailInforCustomer extends Fragment {
         txtaddr = (EditText) view.findViewById(R.id.txtcusaddress);
         txtemail = (EditText) view.findViewById(R.id.txtcusemail);
         txtusername = (EditText) view.findViewById(R.id.txtcususername);
-        btnback = (ImageButton) view.findViewById(R.id.btncusback);
+        btnback = (ImageButton) view.findViewById(R.id.btndriverback);
+        state =(Switch) view.findViewById(R.id.switchstatecustomer);
+        initDialog();
+        setVisibleFalse();
 
-        txtname.setEnabled(false);
-        txtgender.setEnabled(false);
-        txtphone.setEnabled(false);
-        txtaddr.setEnabled(false);
-        txtemail.setEnabled(false);
-        txtusername.setEnabled(false);
 
 
         Bundle bundle = this.getArguments();
@@ -98,6 +109,13 @@ public class DetailInforCustomer extends Fragment {
                 txtphone.setText(customer.getPhone());
                 txtaddr.setText(customer.getAddress());
                 txtgender.setText(customer.getGender());
+                if(customer.getStatus().equals("consudung"))
+                {
+                    state.setChecked(true);
+                }else
+                {
+                    state.setChecked(false);
+                }
             }
 
         }
@@ -110,8 +128,77 @@ public class DetailInforCustomer extends Fragment {
                 }
             }
         });
+       state.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if(state.isChecked() == false)
+               {
+                   textView.setText("Are you sure you want to block account of this customer?");
+                   dialog.show();
+               }
+               else {
+                   textView.setText("Are you sure you want to open account of this customer?");
+                   dialog.show();
+               }
+           }
+       });
 
 
         return view;
     }
+
+    public void setVisibleFalse()
+    {
+        txtname.setEnabled(false);
+        txtgender.setEnabled(false);
+        txtphone.setEnabled(false);
+        txtaddr.setEnabled(false);
+        txtemail.setEnabled(false);
+        txtusername.setEnabled(false);
+    }
+    public void initDialog()
+    {
+        dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.layout_dialog_confirm);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.background_dialog);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations =R.style.animation;
+        textView = dialog.findViewById(R.id.txtquestion);
+        ok = dialog.findViewById(R.id.dialog_ok);
+        cancel = dialog.findViewById(R.id.dialog_cancel);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                iManageCustomerController = new ManageCustomerController();
+                if(state.isChecked() == true)
+                {
+                    statecus ="consudung";
+                }else if(state.isChecked() == false)
+                {
+                    statecus ="block";
+                }
+
+                iManageCustomerController.updateStateCustomer(getContext(),statecus,txtphone.getText().toString());
+
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(state.isChecked()==false)
+                {
+                    state.setChecked(true);
+
+                }
+                else if(state.isChecked()==true)
+                {
+                    state.setChecked(false);
+                }
+                dialog.dismiss();
+            }
+        });
+    }
+
 }

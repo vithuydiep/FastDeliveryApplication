@@ -59,7 +59,7 @@
         android:text="Driver"
         android:textColor="#ffff"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/btnHomeDriver" />
 
     <TextView
         android:id="@+id/textView14"
@@ -71,7 +71,7 @@
         android:text="Customer"
         android:textColor="#ffff"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnHomeCustomer" />
 
     <TextView
         android:id="@+id/textView15"
@@ -110,7 +110,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnHomeDriver"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
@@ -123,14 +123,14 @@
         app:srcCompat="@drawable/driver" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnHomeCustomer"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/btn_icon"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/btnHomeDriver"
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.164"
         app:srcCompat="@drawable/customer" />
@@ -156,13 +156,13 @@
         android:background="@drawable/btn_icon"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/btnHomeCustomer"
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.164"
         app:srcCompat="@drawable/order1" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btnHomeContact"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
@@ -174,14 +174,14 @@
         app:srcCompat="@drawable/contact" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/btnHomeFeedback"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_icon"
         android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintStart_toEndOf="@+id/btnHomeContact"
         app:layout_constraintTop_toBottomOf="@+id/textView14"
         app:srcCompat="@drawable/feedback" />
 

@@ -30,6 +30,7 @@ public class ListCustomer extends Fragment implements IListCustomer{
     ImageButton btnimgplus;
     MainAdminActivity mainAdminActivity;
 
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -78,7 +79,7 @@ public class ListCustomer extends Fragment implements IListCustomer{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_customer, container, false);
-        mainAdminActivity = (MainAdminActivity) getActivity();
+        //mainAdminActivity = (MainAdminActivity) getActivity();
         btnimgplus = (ImageButton) view.findViewById(R.id.imgbtnaddcus);
         btnimgplus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +88,8 @@ public class ListCustomer extends Fragment implements IListCustomer{
                 changeFragment(fragment);
             }
         });
-        listCustomer = (ListView) view.findViewById(R.id.listcustomer);
+
+        listCustomer = (ListView) view.findViewById(R.id.listdriver);
         setAdaper(view);
         return view;
     }
@@ -97,7 +99,7 @@ public class ListCustomer extends Fragment implements IListCustomer{
     public void setAdaper(View view) {
         iManageCustomerController = new ManageCustomerController(this);
         CustomerAdapter adapter = iManageCustomerController.loadadapter(getContext());
-        listCustomer = (ListView) view.findViewById(R.id.listcustomer);
+        listCustomer = (ListView) view.findViewById(R.id.listdriver);
         listCustomer.setAdapter(adapter);
 
     }
