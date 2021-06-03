@@ -150,7 +150,8 @@ CREATE TABLE `user` (
   `resetpasswordcode` varchar(6) DEFAULT NULL,
   `state` varchar(100) DEFAULT NULL,
   `driverlicensenumber` varchar(12) DEFAULT NULL,
-  `typeofuser` varchar(20) DEFAULT NULL
+  `typeofuser` varchar(20) DEFAULT NULL,
+  `isReceiveNotification` BIT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

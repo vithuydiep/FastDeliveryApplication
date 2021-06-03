@@ -35,6 +35,31 @@ public class User implements IUser{
     private String status;
     private String resetPassword;
     private String typeOfUser;
+    private int isReceiveNotification;
+
+    public User(int idUser, String fullName, String gender, String phone, String address, String email, String userName, String passWord, String activationCode, String status, String resetPassword, String typeOfUser, int isReceiveNotification) {
+        this.idUser = idUser;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.activationCode = activationCode;
+        this.status = status;
+        this.resetPassword = resetPassword;
+        this.typeOfUser = typeOfUser;
+        this.isReceiveNotification = isReceiveNotification;
+    }
+
+    public int getIsReceiveNotification() {
+        return isReceiveNotification;
+    }
+
+    public void setIsReceiveNotification(int isReceiveNotification) {
+        this.isReceiveNotification = isReceiveNotification;
+    }
 
     private static User instance;
 
