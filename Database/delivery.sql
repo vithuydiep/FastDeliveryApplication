@@ -41,7 +41,8 @@ CREATE TABLE `bill` (
   `state` varchar(100) DEFAULT NULL,
   `idpayment` int(11) DEFAULT NULL,
   `startTime` datetime DEFAULT NULL,
-  `endTime` datetime DEFAULT NULL
+  `endTime` datetime DEFAULT NULL,
+  `iddriver` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -198,7 +199,8 @@ CREATE TABLE `wallet` (
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idpayment` (`idpayment`),
-  ADD KEY `iduser` (`iduser`);
+  ADD KEY `iduser` (`iduser`),
+  ADD KEY `iddriver` (`iddriver`);
 
 --
 -- Chỉ mục cho bảng `contact`
@@ -307,8 +309,8 @@ ALTER TABLE `wallet`
 --
 ALTER TABLE `bill`
   ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`idpayment`) REFERENCES `payment` (`id`),
-  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
-
+  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `bill_ibfk_3` FOREIGN KEY (`iddriver`) REFERENCES `user` (`id`);
 --
 -- Các ràng buộc cho bảng `contact`
 --
