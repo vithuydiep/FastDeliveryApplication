@@ -31,8 +31,6 @@ import okhttp3.Response;
 public class MainAdminActivity extends AppCompatActivity implements IMainAdminActivity {
     MeowBottomNavigation bottomNavigation;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +100,7 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
     public void gotoDetailFragment(Customer customer)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

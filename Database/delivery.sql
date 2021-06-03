@@ -100,7 +100,8 @@ INSERT INTO `feedback` (`id`, `idorder`, `danhgiadichvu`, `ghichu`) VALUES
 CREATE TABLE `notification` (
   `id` int(11) NOT NULL,
   `title` varchar(1000) DEFAULT NULL,
-  `content` longtext DEFAULT NULL
+  `content` longtext DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -312,6 +313,13 @@ ALTER TABLE `bill`
 --
 ALTER TABLE `contact`
   ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
+
+--
+-- Các ràng buộc cho bảng `notifycation`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `nofification_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
+
 
 --
 -- Các ràng buộc cho bảng `feedback`

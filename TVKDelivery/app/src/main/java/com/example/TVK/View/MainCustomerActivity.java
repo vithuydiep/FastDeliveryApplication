@@ -46,7 +46,7 @@ public class MainCustomerActivity extends AppCompatActivity implements IMainCust
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        setContentView(R.layout.activity_main_customer);
 
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
 
@@ -127,6 +127,12 @@ public class MainCustomerActivity extends AppCompatActivity implements IMainCust
         fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void sendSms(String toPhoneNumber, String message) {
+
+    }
+
     public void gotoListCustomer()
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

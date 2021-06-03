@@ -41,7 +41,7 @@ public class User implements IUser{
     private IGetAPICallback iGetAPICallback;
     private IOrder iOrder;
 
-    String baseUrl = "http://192.168.1.6/androidwebservce/";
+    String baseUrl = "http://192.168.1.10/androidwebservce/";
 
     public User(){
 
