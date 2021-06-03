@@ -83,7 +83,7 @@
         android:text="Order"
         android:textColor="#ffff"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+        app:layout_constraintTop_toBottomOf="@+id/imgButtonOrder" />
 
     <TextView
         android:id="@+id/textView16"
@@ -143,13 +143,13 @@
         android:background="@drawable/btn_icon"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintStart_toEndOf="@+id/imgButtonOrder"
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.164"
         app:srcCompat="@drawable/pakage" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/imgButtonOrder"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
@@ -239,7 +239,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/tvWelcomeCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"

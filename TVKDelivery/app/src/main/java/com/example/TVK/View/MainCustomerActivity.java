@@ -3,100 +3,148 @@ package com.example.TVK.View;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.TVK.Model.User.Customer;
+import com.example.TVK.Model.User.Driver;
 import com.example.TVK.R;
+import com.example.TVK.View.Fragment.AddNewDriver;
+import com.example.TVK.View.Fragment.Category;
+import com.example.TVK.View.Fragment.DetailDriver;
+import com.example.TVK.View.Fragment.DetailInforCustomer;
+import com.example.TVK.View.Fragment.EditCustomerInfor;
+import com.example.TVK.View.Fragment.HomeAdmin;
+import com.example.TVK.View.Fragment.HomeCustomer;
+import com.example.TVK.View.Fragment.ListCustomer;
+import com.example.TVK.View.Fragment.Notification;
+import com.example.TVK.View.Fragment.OrderManagementCustomer;
 import com.example.TVK.View.Fragment.ViewPagerAdapterCustomer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainCustomerActivity extends AppCompatActivity{
-    private ViewPager viewPager;
-    private BottomNavigationView bottomNavigationView;
-    Button btndangxuat;
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class MainCustomerActivity extends AppCompatActivity implements IMainCustomerActivity{
+    MeowBottomNavigation bottomNavigation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_customer);
+        setContentView(R.layout.activity_main_admin);
 
-        viewPager = findViewById(R.id.ViewPager);
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
-        ViewPagerAdapterCustomer adapter= new ViewPagerAdapterCustomer(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(adapter);
+        bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_order));
+        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_notifications));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5, R.drawable.ic_menu));
+
+        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_home).setChecked(true);
-                        break;
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_thongbao).setChecked(true);
+                        fragment = new HomeCustomer();
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_danhmuc).setChecked(true);
+                        fragment = new EditCustomerInfor();
+                        break;
+                    case 3:
+                        fragment =new Notification();
+                        break;
+                    case 4:
+                        fragment = new OrderManagementCustomer();
+                        break;
+                    case 5 :
+                        fragment = new Category();
+                        break;
+                    default:
+                        fragment = new HomeCustomer();
                         break;
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+                loadFragment(fragment);
             }
         });
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        bottomNavigation.setCount(3,"10");
+        bottomNavigation.show(1,true);
+
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_home:
-                        viewPager.setCurrentItem(0);
-                        break;
-                    case R.id.menu_thongbao:
-                        viewPager.setCurrentItem(1);
-                        break;
-                    case R.id.menu_danhmuc:
-                        viewPager.setCurrentItem(2);
-                        break;
-                }
-                return true;
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //Toast.makeText(getApplicationContext(),"YouClicked"+ item.getId(), Toast.LENGTH_LONG).show();
             }
         });
-    }
-    private void anhxa()
-    {
-        btndangxuat = findViewById(R.id.btndangxuat);
-    }
-    boolean doubleBackToExitPressedOnce = false;
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //Toast.makeText(getApplicationContext(), "You Reselected" +item.getId(),Toast.LENGTH_LONG).show();
+            }
+        });
 
-    // click back twice to exit application
+
+
+    }
+
+
     @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
+    public void getView() {
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+    }
 
-        new Handler().postDelayed(new Runnable() {
+    @Override
+    public void loadFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+    public void gotoDetailFragment(Customer customer)
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailInforCustomer detailInforCustomer = new DetailInforCustomer();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_customer", customer);
+        detailInforCustomer.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frame_layout,detailInforCustomer);
+        fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+        fragmentTransaction.commit();
+    }
+    public void gotoListCustomer()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        ListCustomer detailInforCustomer = new ListCustomer();
+        fragmentTransaction.replace(R.id.frame_layout,detailInforCustomer);
+        //fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+        fragmentTransaction.commit();
+    }
 
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
+    public void gotoDetailFragment(Driver driver)
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailDriver detailDriver = new DetailDriver();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_driver", driver);
+        detailDriver.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frame_layout,detailDriver);
+        fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+        fragmentTransaction.commit();
     }
 }

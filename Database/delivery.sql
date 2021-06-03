@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 23, 2021 lúc 05:57 PM
+-- Thời gian đã tạo: Th5 28, 2021 lúc 12:07 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Phiên bản PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,24 +36,20 @@ CREATE TABLE `bill` (
   `receivername` varchar(100) DEFAULT NULL,
   `receiverphone` varchar(10) DEFAULT NULL,
   `description` varchar(2000) DEFAULT NULL,
-  `collectstate` bit(1) DEFAULT NULL,
-  `collectmoney` float DEFAULT NULL,
   `postage` float DEFAULT NULL,
   `total` float DEFAULT NULL,
-  `typeofservice` varchar(100) DEFAULT NULL,
   `state` varchar(100) DEFAULT NULL,
-  `note` varchar(2000) DEFAULT NULL,
   `idpayment` int(11) DEFAULT NULL,
-  `idshipment` int(11) DEFAULT NULL,
-  `typeoforder` varchar(100) DEFAULT NULL
+  `startTime` datetime DEFAULT NULL,
+  `endTime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `bill`
 --
 
-INSERT INTO `bill` (`id`, `iduser`, `pickupaddress`, `deliveryaddress`, `mass`, `receivername`, `receiverphone`, `description`, `collectstate`, `collectmoney`, `postage`, `total`, `typeofservice`, `state`, `note`, `idpayment`, `idshipment`, `typeoforder`) VALUES
-(1, 129, 'TPHCM', 'Lấp Vò, Đồng Tháp', 1.2, 'Diệp Thúy Vi', '898018964', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `bill` (`id`, `iduser`, `pickupaddress`, `deliveryaddress`, `mass`, `receivername`, `receiverphone`, `description`, `postage`, `total`, `state`, `idpayment`) VALUES
+(1, 129, 'TPHCM', 'Lấp Vò, Đồng Tháp', 1.2, 'Diệp Thúy Vi', '898018964', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,22 +132,6 @@ CREATE TABLE `policy` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `shipment`
---
-
-CREATE TABLE `shipment` (
-  `id` int(11) NOT NULL,
-  `iddriver` int(11) DEFAULT NULL,
-  `totalmass` float DEFAULT NULL,
-  `totalorders` int(11) DEFAULT NULL,
-  `starttime` datetime DEFAULT NULL,
-  `endtime` datetime DEFAULT NULL,
-  `state` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `user`
 --
 
@@ -216,8 +196,7 @@ CREATE TABLE `wallet` (
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idpayment` (`idpayment`),
-  ADD KEY `iduser` (`iduser`),
-  ADD KEY `idshipment` (`idshipment`);
+  ADD KEY `iduser` (`iduser`);
 
 --
 -- Chỉ mục cho bảng `contact`
@@ -251,13 +230,6 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `policy`
   ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `shipment`
---
-ALTER TABLE `shipment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `iddriver` (`iddriver`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -313,12 +285,6 @@ ALTER TABLE `policy`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `shipment`
---
-ALTER TABLE `shipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
@@ -339,8 +305,7 @@ ALTER TABLE `wallet`
 --
 ALTER TABLE `bill`
   ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`idpayment`) REFERENCES `payment` (`id`),
-  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `bill_ibfk_3` FOREIGN KEY (`idshipment`) REFERENCES `shipment` (`id`);
+  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
 -- Các ràng buộc cho bảng `contact`
@@ -359,12 +324,6 @@ ALTER TABLE `feedback`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`idwallet`) REFERENCES `wallet` (`id`);
-
---
--- Các ràng buộc cho bảng `shipment`
---
-ALTER TABLE `shipment`
-  ADD CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`iddriver`) REFERENCES `user` (`id`);
 
 --
 -- Các ràng buộc cho bảng `wallet`
