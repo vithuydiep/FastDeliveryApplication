@@ -208,6 +208,8 @@ public class Customer extends User implements ICustomer , Serializable {
         };
         requestQueue.add(stringRequest);
     }
+
+
     @Override
     public void getAllDataCustomer(Context context, ArrayList<Customer> customerArrayList, CustomerAdapter adapter) {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -259,6 +261,42 @@ public class Customer extends User implements ICustomer , Serializable {
                 }
             };
             requestQueue.add(jsonArrayRequest);
+    }
+
+    public void findCustomerbyID(Context context, CallBack callBack, String id, Customer customer)
+    {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response.equals("Error"))
+                        {
+                            callBack.onGetDataSucess(null,null,response,context,customer);
+                            Toast.makeText(context, response, Toast.LENGTH_LONG).show();
+                        }else {
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                callBack.onGetDataSucess(object,null,"customer",context,customer);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }}, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) { }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("type","findUserbyID");
+                params.put("id",id);
+                return params;
+            }
+        };
+        requestQueue.add(jsonArrayRequest);
     }
 
 

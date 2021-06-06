@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:clickable="true"
         android:fontFamily="@font/poppins"
         android:text="IDUser"
         android:textColor="@color/black"

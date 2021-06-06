@@ -30,7 +30,7 @@ public class Contact implements IContact {
     public Contact() {
     }
 
-    String baseUrl = "http://192.168.1.6/androidwebservce/";
+    public String baseUrl = "http://192.168.1.7/androidwebservce/";
     public int getId() {
         return id;
     }

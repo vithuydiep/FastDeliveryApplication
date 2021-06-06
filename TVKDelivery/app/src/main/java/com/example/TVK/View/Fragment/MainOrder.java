@@ -4,29 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.TVK.Controller.IManageFeedbackController;
-import com.example.TVK.Controller.ManageFeedbackController;
-import com.example.TVK.Model.IFeedback;
+import com.example.TVK.Controller.IManageOrderController;
+import com.example.TVK.Controller.ManageOrderController;
+import com.example.TVK.Model.IOrder;
 import com.example.TVK.R;
-import com.example.TVK.View.FeedbackAdapter;
+import com.example.TVK.View.MainAdminActivity;
+import com.example.TVK.View.OrderAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ListFeedback#newInstance} factory method to
+ * Use the {@link MainOrder#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListFeedback extends Fragment implements IListFeedback {
+public class MainOrder extends Fragment implements IMainOrder{
+    ListView listOrder;
+    IOrder iOrder;
+    IManageOrderController iManageOrderController;
+    MainAdminActivity mainAdminActivity;
 
-    IManageFeedbackController iManageFeedbackController;
-    ListView listfeedback;
-    IFeedback iFeedback;
-    ImageButton btnback;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +37,7 @@ public class ListFeedback extends Fragment implements IListFeedback {
     private String mParam1;
     private String mParam2;
 
-    public ListFeedback() {
+    public MainOrder() {
         // Required empty public constructor
     }
 
@@ -46,11 +47,11 @@ public class ListFeedback extends Fragment implements IListFeedback {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ListFeedback.
+     * @return A new instance of fragment MainOrder.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListFeedback newInstance(String param1, String param2) {
-        ListFeedback fragment = new ListFeedback();
+    public static MainOrder newInstance(String param1, String param2) {
+        MainOrder fragment = new MainOrder();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,34 +72,42 @@ public class ListFeedback extends Fragment implements IListFeedback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_list_feedback, container, false);
-        setAdaper(view);
-        btnback = (ImageButton) view.findViewById(R.id.btnback);
-        btnback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new HomeAdmin();
-                changeFragment(fragment);
-            }
-        });
+        View view =  inflater.inflate(R.layout.fragment_main_order, container, false);
+        listOrder = view.findViewById(R.id.listOrder);
+        String title = getArguments().getString("title");
+
+        if(title.equals("All of order"))
+        {
+            setAdaper(view,"ALLORDER");
+        }
+        if(title.equals("Processing"))
+        {
+            setAdaper(view,"RECENT");
+        }
+        if (title.equals("Completed"))
+        {
+            setAdaper(view,"COMPLETED");
+        }
+
+
         return view;
     }
 
     @Override
-    public void setAdaper(View view) {
-        iManageFeedbackController = new ManageFeedbackController(this);
-        FeedbackAdapter adapter = iManageFeedbackController.loadadapter(getContext());
-        listfeedback = (ListView) view.findViewById(R.id.listfeedback);
-        listfeedback.setAdapter(adapter);
+    public void setAdaper(View view, String type) {
+        iManageOrderController= new ManageOrderController(this);
+        OrderAdapter orderAdapter = iManageOrderController.loadadapter(getContext(),type);
+        listOrder.setAdapter(orderAdapter);
     }
 
     @Override
     public void changeFragment(Fragment fragment) {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
+
     }
 
     @Override
     public void notifyerror(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
     }
+
 }

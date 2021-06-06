@@ -19,10 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class User implements IUser{
+public class User implements IUser, Serializable {
     private int idUser;
     private String fullName;
     private String gender;
@@ -35,16 +36,34 @@ public class User implements IUser{
     private String status;
     private String resetPassword;
     private String typeOfUser;
+    private int isReceiveNotification;
 
     private static User instance;
 
     private IGetAPICallback iGetAPICallback;
     private IOrder iOrder;
 
-    String baseUrl = "http://192.168.1.6/androidwebservce/";
+    String baseUrl = "http://192.168.1.7/androidwebservce/";
 
     public User(){
 
+    }
+
+    public int getIsReceiveNotification() {
+        return isReceiveNotification;
+    }
+
+    public void setIsReceiveNotification(int isReceiveNotification) {
+        this.isReceiveNotification = isReceiveNotification;
+    }
+
+    public User(int idUser, String phone) {
+        this.idUser = idUser;
+        this.phone = phone;
+    }
+
+    public User(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdUser() {

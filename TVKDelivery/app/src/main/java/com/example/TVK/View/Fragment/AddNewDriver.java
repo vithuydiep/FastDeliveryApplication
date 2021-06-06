@@ -73,7 +73,8 @@ public class AddNewDriver extends Fragment implements IAddNewDriver{
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_new_driver, container, false);
 
-        iManageDriverController = new ManageDriverController(this);
+        //iManageDriverController = new ManageDriverController(this);
+        IAddNewDriver iAddNewDriver = this;
         txtname = (EditText) view.findViewById(R.id.txtdrivername_add);
         txtgender = (EditText) view.findViewById(R.id.txtdrivergender_add);
         txtemail = (EditText) view.findViewById(R.id.txtdriveremail_add);
@@ -111,6 +112,7 @@ public class AddNewDriver extends Fragment implements IAddNewDriver{
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iManageDriverController = new ManageDriverController(iAddNewDriver);
                 iManageDriverController.OnCheckData(txtname, txtphone, txtgender,txtemail,txtidnumber,txtaddress, txtlicense,getContext());
             }
         });

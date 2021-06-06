@@ -20,10 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.TVK.Controller.ILoginController;
 import com.example.TVK.Controller.LoginController;
+import com.example.TVK.Model.User.User;
 import com.example.TVK.R;
 import com.example.TVK.Ultis.IViewUltis;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -184,6 +186,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void moveToMaiActivity(String type_of_user,JSONObject jsonObject) {
+        User user = null;
         //chuyển màn hình
         // create intent to show Main Activity
         if(type_of_user==null)
@@ -212,8 +215,27 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
                     throw new IllegalStateException("Unexpected value: ");//user.login(user));
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                 user = new User(jsonObject.getInt("ID"), jsonObject.getString("Name"),
+                        jsonObject.getString("Gender"),
+                        jsonObject.getString("Phone"),
+                        jsonObject.getString("Address"),
+                        jsonObject.getString("Email"),
+                        jsonObject.getString("Username"),
+                        jsonObject.getString("Password"),
+                        jsonObject.getString("ActivationCode"),
+                        jsonObject.getString("State"),
+                        jsonObject.getString("ResetPasswordCode"),
+                        jsonObject.getString("TypeUser"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             // send data if need
-            //intent.putExtra(KEY_USER_TO_MAIN, user.getIdUser());
+            if(user!=null)
+            {
+                intent.putExtra("adminobject", user);
+            }
+
             // start Main Activity
             context.startActivity(intent);
             finish();

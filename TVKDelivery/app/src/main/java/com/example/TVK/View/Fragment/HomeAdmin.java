@@ -92,6 +92,22 @@ public class HomeAdmin extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
             }
         });
+        ImageButton btnOrder = (ImageButton) view.findViewById(R.id.btnHomOrder);
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ListOrder();
+                getFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
+            }
+        });
+        ImageButton btnNotify = (ImageButton) view.findViewById(R.id.btnHomeNotify);
+        btnNotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AddNotification();
+                getFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
+            }
+        });
 
 
         return view;

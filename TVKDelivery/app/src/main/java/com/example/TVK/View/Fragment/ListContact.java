@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class ListContact extends Fragment implements IListContact {
     IManageContactController iManageContactController;
     ListView listcontact;
     IContact iContact;
+    ImageButton btnback;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,7 +74,14 @@ public class ListContact extends Fragment implements IListContact {
         View view=  inflater.inflate(R.layout.fragment_list_contact, container, false);
         listcontact = (ListView) view.findViewById(R.id.listcontact);
         setAdaper(view);
-
+        btnback = (ImageButton) view.findViewById(R.id.btnback2);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment= new HomeAdmin();
+                changeFragment(fragment);
+            }
+        });
         return view;
     }
 

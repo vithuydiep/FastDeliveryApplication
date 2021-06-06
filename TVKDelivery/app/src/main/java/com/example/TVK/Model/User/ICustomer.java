@@ -16,4 +16,5 @@ public interface ICustomer {
     void checkExistPhone(Context context, CallBack callBack, EditText txtcusname_add, EditText txtcusphone_add, EditText txtcusemail_add);
     void addNewCustomter(Customer customer, Context context, IViewUltis iViewUltis, IGetAPICallback iGetAPICallback_argument);
     void updateStateCustomer(Context context, String state, String id);
+    void findCustomerbyID(Context context, CallBack callBack, String id,Customer customer);
 }
