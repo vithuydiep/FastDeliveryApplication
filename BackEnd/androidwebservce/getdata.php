@@ -184,6 +184,130 @@
 			}
 			echo json_encode($arrayfeedback);
 			break;
+		case "findUserbyID":
+			$id =$_POST['id'];
+			$query = "Select * from user where id = '$id'";
+			$data = mysqli_query($connect, $query);
+			if(mysqli_num_rows($data) != 0){
+				while ($row = mysqli_fetch_assoc($data)) {
+					$user = new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']);}
+				echo json_encode($user);
+			}else{
+				echo "Error";
+			};
+			break;
+		case "editPhone":
+			$phone=$_POST['phone'];
+			$id =$_POST['id'];
+			$query = "update user set phone ='$phone' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editEmail":
+			$email=$_POST['email'];
+			$id =$_POST['id'];
+			$query = "update user set email ='$email' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editAddress":
+			$address=$_POST['address'];
+			$id =$_POST['id'];
+			$query = "update user set address ='$address' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editIDNumber":
+			$idnumber=$_POST['idnumber'];
+			$id =$_POST['id'];
+			$query = "update user set idnumber ='$idnumber' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editLicense":
+			$license=$_POST['license'];
+			$id =$_POST['id'];
+			$query = "update user set driverlicensenumber ='$license' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "getDataOrder":
+			$query = "SELECT * FROM bill";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+			array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['idpayment'],$row['startTime'],$row['endTime'],$row['iddriver']));}
+			echo json_encode($arrayOrder);
+			break;
+		case "getDataOrderRecent":
+			$query = "SELECT * FROM bill where state='DANGXULY'";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+			array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['idpayment'],$row['startTime'],$row['endTime'],$row['iddriver']));}
+			echo json_encode($arrayOrder);
+			break;
+		case "getDataOrderCompleted":
+			$query = "SELECT * FROM bill where state='DAGIAO'";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+			array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['idpayment'],$row['startTime'],$row['endTime'],$row['iddriver']));}
+			echo json_encode($arrayOrder);
+			break;
+		case "deleteOrder":
+			$id=$_POST['id'];
+			$query = "DELETE from bill where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "newnotify":
+			$title=$_POST['title'];
+			$content=$_POST['content'];
+			$query = "INSERT into notification(title,content) values ('$title','$content')";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "findOrderbyID":
+			$id =$_POST['id'];
+			$query = "Select * from bill where id = '$id'";
+			$data = mysqli_query($connect, $query);
+			if(mysqli_num_rows($data) != 0){
+				while ($row = mysqli_fetch_assoc($data)) {
+			 	$order= new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['idpayment'],$row['startTime'],$row['endTime'],$row['iddriver']);}
+			echo json_encode($order);
+			}else{
+				echo "Error";
+			};
+			break;
 		default:
 			echo "Lỗi";
 			break;

@@ -49,4 +49,31 @@ class Feedback
 		$this->Note = $note;
 	}
 }
+
+/**
+ * 
+ */
+class Order
+{
+	
+	function __construct($id,$iduser,$pickupaddress,$deliveryaddress,$mass,$receivename,$receiverphone,$description,$postage,$total,$state,$idpayment,$startTime, $endTime,$iddriver)
+	{
+		$this->ID = $id;
+		$this->IDUser = $iduser;
+		$this->Pickupaddress = $pickupaddress;
+		$this->Deliveryaddress = $deliveryaddress;
+		$this->Mass = $mass;
+		$this->ReceiveName= $receivename;
+		$this->receiverphone = $receiverphone;
+		$this->Description= $description;
+		$this->Postage = $postage;
+		$this->Total =$total;
+		$this->State= $state;
+		$this->IDPayment=$idpayment;
+		$this->StartTime= $startTime;
+		$this->EndTime = $endTime;
+		$this->IDDriver=$iddriver;
+	}
+}
+
 ?>
