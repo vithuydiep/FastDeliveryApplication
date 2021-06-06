@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/fontavatar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="@+id/btndriverback"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtcusaddress"
@@ -222,7 +222,8 @@
         android:id="@+id/barrier4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="411dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -235,7 +236,8 @@
         android:id="@+id/barrier5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="411dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier6"

@@ -57,10 +57,10 @@ public class DriverAdapter extends BaseAdapter {
             holder = new DriverAdapter.ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
-            holder.txtname = (TextView) convertView.findViewById(R.id.txtname);
-            holder.txtphone = (TextView) convertView.findViewById(R.id.txtphone);
+            holder.txtname = (TextView) convertView.findViewById(R.id.txtIDOrder);
+            holder.txtphone = (TextView) convertView.findViewById(R.id.tvStarttime);
             holder.imageView= (ImageView) convertView.findViewById(R.id.txtpicture);
-            holder.btndetailcus = (ImageView) convertView.findViewById(R.id.btndetailcus);
+            holder.btndetailcus = (ImageView) convertView.findViewById(R.id.btnDetailOrderCus);
             convertView.setTag(holder);
         }
         else {

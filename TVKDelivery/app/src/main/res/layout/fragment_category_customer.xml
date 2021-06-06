@@ -16,7 +16,8 @@
         android:layout_marginTop="4dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/textView30"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView34"
@@ -48,7 +49,8 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/imageView18"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView36"
@@ -83,7 +85,8 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/imageView14"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtnameAd3"
@@ -116,7 +119,8 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/imageView15"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView17"
@@ -125,7 +129,8 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btndangxuat"
@@ -140,13 +145,15 @@
         app:backgroundTint="@color/none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView19"
+        tools:ignore="MissingPrefix" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:src="@drawable/head"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -157,7 +164,8 @@
         android:layout_marginTop="3dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -189,7 +197,8 @@
         android:layout_marginTop="4dp"
         android:src="@drawable/bgde"
         app:layout_constraintTop_toBottomOf="@+id/textView20"
-        tools:layout_editor_absoluteX="1dp" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtnameAd2"
@@ -238,7 +247,7 @@
         android:id="@+id/imageView26"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/contact"
         app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +294,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/poppins"
-        android:text="Admin TVKDelivery"
+        android:text="Customer TVK Delivery"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/txtnameAd" />
 
@@ -320,7 +329,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins"
-        android:text="Shipment"
+        android:text="Order"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageView25"

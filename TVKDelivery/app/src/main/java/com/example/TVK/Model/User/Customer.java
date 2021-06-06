@@ -13,10 +13,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.TVK.Controller.IEditInforCustomerController;
 import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.IGetAPICallback;
 import com.example.TVK.Ultis.IViewUltis;
 import com.example.TVK.View.CustomerAdapter;
+import com.example.TVK.View.Fragment.IEditCustomerInfor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,8 +44,77 @@ public class Customer extends User implements ICustomer , Serializable {
         super(idUser, fullName, gender, phone, address, email, userName, passWord, activationCode, status, resetPassword, typeOfUser);
     }
 
+    public Customer(int idUser, String fullName, String gender, String phone, String address, String email, String userName, String passWord, String activationCode, String status, String resetPassword, String typeOfUser, int isReceiveNotification) {
+        super(idUser, fullName, gender, phone, address, email, userName, passWord, activationCode, status, resetPassword, typeOfUser, isReceiveNotification);
+    }
+
     public Customer() {
 
+    }
+
+    @Override
+    public void setIsReceiveNotification(int isReceiveNotification) {
+        super.setIsReceiveNotification(isReceiveNotification);
+    }
+
+    @Override
+    public void setIdUser(int idUser) {
+        super.setIdUser(idUser);
+    }
+
+    @Override
+    public void setFullName(String fullName) {
+        super.setFullName(fullName);
+    }
+
+    @Override
+    public void setGender(String gender) {
+        super.setGender(gender);
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        super.setPhone(phone);
+    }
+
+    @Override
+    public void setAddress(String address) {
+        super.setAddress(address);
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        super.setUserName(userName);
+    }
+
+    @Override
+    public void setPassWord(String passWord) {
+        super.setPassWord(passWord);
+    }
+
+    @Override
+    public void setActivationCode(String activationCode) {
+        super.setActivationCode(activationCode);
+    }
+
+    @Override
+    public void setStatus(String status) {
+        super.setStatus(status);
+    }
+
+    @Override
+    public void setResetPassword(String resetPassword) {
+        super.setResetPassword(resetPassword);
+    }
+
+    @Override
+    public void setTypeOfUser(String typeOfUser) {
+        super.setTypeOfUser(typeOfUser);
     }
 
     public static Customer getInstance() {
@@ -261,7 +332,37 @@ public class Customer extends User implements ICustomer , Serializable {
             requestQueue.add(jsonArrayRequest);
     }
 
-
+    public void updateCustomer(Context context, IEditInforCustomerController iEditInforCustomerController, Customer customer)
+    {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                iEditInforCustomerController.showToast(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                iEditInforCustomerController.showToast(error.toString());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("type","editUser");
+                params.put("name",customer.getFullName());
+                params.put("gender",customer.getGender());
+                params.put("phone",customer.getPhone());
+                params.put("address",customer.getAddress());
+                params.put("email",customer.getEmail());
+                params.put("isReceiveNotification", String.valueOf(customer.getIsReceiveNotification()));
+                params.put("id", String.valueOf(customer.getIdUser()));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
 
 
     public static class CustomerBuilder {

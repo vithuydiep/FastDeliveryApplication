@@ -21,9 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.TVK.Controller.ILoginController;
 import com.example.TVK.Controller.LoginController;
 import com.example.TVK.R;
+import com.example.TVK.Ultis.GlobalUser;
 import com.example.TVK.Ultis.IViewUltis;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -167,7 +169,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     }
 
     @Override
-    public void rememberMe(boolean isRemembeMe, String type_of_user, JSONObject json_user) {
+    public void rememberMe(boolean isRemembeMe, String type_of_user, JSONObject json_user){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(isRemembeMe)
         {
@@ -200,12 +202,30 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
             switch (type_of_user)
             {
                 case "ADMIN":
+                    GlobalUser.getInstanceAdmin(type_of_user);
+                    try {
+                        GlobalUser.setGlobalUser(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     intent = new Intent(context, MainAdminActivity.class);
                     break;
                 case "DRIVER":
+                    GlobalUser.getInstanceDriver(type_of_user);
+                    try {
+                        GlobalUser.setGlobalUser(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     intent = new Intent(context, MainDriverActivity.class);
                     break;
                 case "CUSTOMER":
+                    GlobalUser.getInstanceCustomer(type_of_user);
+                    try {
+                        GlobalUser.setGlobalUser(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     intent = new Intent(context, MainCustomerActivity.class);
                     break;
                 default:

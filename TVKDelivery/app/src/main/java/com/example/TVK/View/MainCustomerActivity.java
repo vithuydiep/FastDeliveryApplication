@@ -2,43 +2,25 @@ package com.example.TVK.View;
 
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Base64;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.TVK.Model.User.Customer;
 import com.example.TVK.Model.User.Driver;
 import com.example.TVK.R;
-import com.example.TVK.View.Fragment.AddNewDriver;
 import com.example.TVK.View.Fragment.Category;
+import com.example.TVK.View.Fragment.CategoryCustomer;
 import com.example.TVK.View.Fragment.DetailDriver;
 import com.example.TVK.View.Fragment.DetailInforCustomer;
 import com.example.TVK.View.Fragment.EditCustomerInfor;
-import com.example.TVK.View.Fragment.HomeAdmin;
 import com.example.TVK.View.Fragment.HomeCustomer;
 import com.example.TVK.View.Fragment.ListCustomer;
 import com.example.TVK.View.Fragment.Notification;
 import com.example.TVK.View.Fragment.OrderManagementCustomer;
-import com.example.TVK.View.Fragment.ViewPagerAdapterCustomer;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.IOException;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class MainCustomerActivity extends AppCompatActivity implements IMainCustomerActivity{
     MeowBottomNavigation bottomNavigation;
@@ -48,7 +30,9 @@ public class MainCustomerActivity extends AppCompatActivity implements IMainCust
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_customer);
 
-        bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
+        IMainCustomerActivity iMainCustomerActivity = this;
+
+        bottomNavigation = findViewById(R.id.bottomNavigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_order));
@@ -65,16 +49,16 @@ public class MainCustomerActivity extends AppCompatActivity implements IMainCust
                         fragment = new HomeCustomer();
                         break;
                     case 2:
-                        fragment = new EditCustomerInfor();
+                        fragment = new EditCustomerInfor(iMainCustomerActivity);
                         break;
                     case 3:
                         fragment =new Notification();
                         break;
                     case 4:
-                        fragment = new OrderManagementCustomer();
+                        fragment = new OrderManagementCustomer(iMainCustomerActivity,MainCustomerActivity.this);
                         break;
                     case 5 :
-                        fragment = new Category();
+                        fragment = new CategoryCustomer(iMainCustomerActivity);
                         break;
                     default:
                         fragment = new HomeCustomer();
@@ -152,5 +136,10 @@ public class MainCustomerActivity extends AppCompatActivity implements IMainCust
         fragmentTransaction.replace(R.id.frame_layout,detailDriver);
         fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void changeFragment(int count) {
+        bottomNavigation.show(1,true);
     }
 }

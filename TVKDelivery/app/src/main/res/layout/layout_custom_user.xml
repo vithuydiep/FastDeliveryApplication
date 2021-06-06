@@ -19,7 +19,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/txtname"
+        android:id="@+id/txtIDOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtphone"
+        android:id="@+id/tvStarttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,10 +40,10 @@
         android:text="Phone"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/txtpicture"
-        app:layout_constraintTop_toBottomOf="@+id/txtname" />
+        app:layout_constraintTop_toBottomOf="@+id/txtIDOrder" />
 
     <ImageButton
-        android:id="@+id/btndetailcus"
+        android:id="@+id/btnDetailOrderCus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

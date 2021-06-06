@@ -39,6 +39,12 @@ public class Driver extends User implements IDriver, Serializable {
         this.idnumber = idnumber;
     }
 
+    public Driver(int idUser, String fullName, String gender, String phone, String address, String email, String userName, String passWord, String activationCode, String status, String resetPassword, String typeOfUser, int isReceiveNotification, String gplx, String idnumber) {
+        super(idUser, fullName, gender, phone, address, email, userName, passWord, activationCode, status, resetPassword, typeOfUser, isReceiveNotification);
+        this.gplx = gplx;
+        this.idnumber = idnumber;
+    }
+
     public String getIdnumber() {
         return idnumber;
     }

@@ -11,4 +11,5 @@ public interface IMainCustomerActivity {
     void gotoDetailFragment(Customer customer);
     void sendSms(String toPhoneNumber, String message);
     void gotoDetailFragment(Driver driver);
+    void changeFragment(int count);
 }
