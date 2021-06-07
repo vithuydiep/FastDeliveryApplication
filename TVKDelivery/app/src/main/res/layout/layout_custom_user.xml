@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgdetailcus"
+    android:background="@drawable/btncancel"
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/txtpicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/btn_icon_stroke"
-        android:foreground="@drawable/user"
+        android:background="@drawable/btn_icon"
+        android:foreground="@drawable/customer"
         app:civ_circle_background_color="#814A4A"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Name"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/txtpicture"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,9 +36,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins"
         android:text="Phone"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/txtpicture"
         app:layout_constraintTop_toBottomOf="@+id/txtname" />
 

@@ -1,213 +1,132 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.HomeCustomer">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="161dp"
-        android:layout_height="167dp"
-        android:layout_marginEnd="264dp"
-        android:layout_marginBottom="68dp"
-        android:src="@drawable/ellipse"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="157dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="316dp"
-        android:src="@drawable/ellipse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="365dp"
-        android:layout_height="224dp"
-        android:layout_marginTop="144dp"
-        android:src="@drawable/bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/toplayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Driver"
-        android:textColor="#ffff"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/btnHomeDriver" />
+        android:background="@color/background">
+        <EditText
+            android:id="@+id/timkiem"
+            android:drawableLeft="@drawable/search1"
+            android:drawablePadding="10dp"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Tìm kiếm"
+            android:textColor="@color/white"
+            android:textColorLink="@color/white"
+            android:textColorHint="#FFF"
+            android:backgroundTint="@color/white"/>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/btnlayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Customer"
-        android:textColor="#ffff"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/btnHomeCustomer" />
-
+        android:layout_below="@+id/toplayout"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btntaodon"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/addcart"
+            android:text="Tạo đơn"
+            android:textSize="13dp"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/btnkiemtradon"
+            android:backgroundTint="@color/white"
+            android:layout_marginLeft="15dp"
+            android:drawableTop="@drawable/checkcart"
+            android:layout_toRightOf="@id/btntaodon"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Kiểm tra"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnlichsu"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/history"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/btnkiemtradon"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:text="Lịch sử"
+            android:textSize="13dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnlienhe"
+            android:backgroundTint="@color/white"
+            android:drawableTop="@drawable/carecustomer"
+            android:layout_toRightOf="@id/btnlichsu"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textSize="13dp"
+            android:text="Liên hệ"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
+        android:id="@+id/khuyenmai"
+        android:drawableLeft="@drawable/sale1"
+        android:drawablePadding="10dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btnlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Khuyến mãi"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:background="@color/background"/>
+    <RelativeLayout
+        android:id="@+id/midlayout"
+        android:layout_below="@id/khuyenmai"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Order"
-        android:textColor="#ffff"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/imgButtonOrder" />
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/imgview1"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_margin="15dp"
+            android:background="@color/gray"/>
+        <ImageView
+            android:id="@+id/imgview2"
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Payment"
-        android:textColor="#ffff"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Feedback"
-        android:textColor="#ffff"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/textView9" />
-
-    <ImageButton
-        android:id="@+id/btnHomeDriver"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.164"
-        app:srcCompat="@drawable/driver" />
-
-    <ImageButton
-        android:id="@+id/btnHomeCustomer"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/btnHomeDriver"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.164"
-        app:srcCompat="@drawable/customer" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/imgButtonOrder"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.164"
-        app:srcCompat="@drawable/pakage" />
-
-    <ImageButton
-        android:id="@+id/imgButtonOrder"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toEndOf="@+id/btnHomeCustomer"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.164"
-        app:srcCompat="@drawable/order1" />
-
-    <ImageButton
-        android:id="@+id/btnHomeContact"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:srcCompat="@drawable/contact" />
-
-    <ImageButton
-        android:id="@+id/btnHomeFeedback"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_icon"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/btnHomeContact"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:srcCompat="@drawable/feedback" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Contact"
-        android:textColor="#ffff"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="65dp"
-        android:layout_height="250dp"
-        android:layout_marginBottom="72dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/tru" />
-
-    <TextView
-        android:id="@+id/tvWelcomeCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="4dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Welcome to Admin home"
-        android:textColor="#797B8F"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_toRightOf="@id/imgview1"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_margin="15dp"
+            android:background="@color/orange"/>
+        <ImageView
+            android:id="@+id/imgview3"
+            android:layout_below="@id/imgview1"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_margin="15dp"
+            android:background="@color/blue"/>
+        <ImageView
+            android:id="@+id/imgview4"
+            android:layout_below="@id/imgview1"
+            android:layout_toRightOf="@id/imgview1"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_margin="15dp"
+            android:background="@color/green"/>
+    </RelativeLayout>
+</RelativeLayout>

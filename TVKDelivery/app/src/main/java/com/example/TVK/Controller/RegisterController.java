@@ -37,6 +37,7 @@ public class RegisterController implements IRegisterController, IGetAPICallback 
 
     @Override
     public void OnCheckDataAndSendOTP(EditText txtUsername, EditText txtPassword, EditText txtConfirmPassword, EditText txtPhone, Context context) {
+
         userName = txtUsername.getText().toString().trim();
         passWord = txtPassword.getText().toString().trim();
         confirmPassword = txtConfirmPassword.getText().toString().trim();

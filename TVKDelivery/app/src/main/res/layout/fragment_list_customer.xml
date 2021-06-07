@@ -7,7 +7,7 @@
     tools:context=".View.Fragment.ListCustomer">
 
     <ListView
-        android:id="@+id/listdriver"
+        android:id="@+id/listcustomer"
         android:layout_width="407dp"
         android:layout_height="625dp"
         android:layout_marginTop="12dp"

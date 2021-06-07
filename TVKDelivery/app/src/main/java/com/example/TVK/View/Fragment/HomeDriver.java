@@ -1,60 +1,62 @@
 package com.example.TVK.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.TVK.R;
 
 public class HomeDriver extends Fragment {
+    ImageButton ibtnNew, ibtnOld, ibtnStatic, ibtnContact;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeDriver() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeDriver.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeDriver newInstance(String param1, String param2) {
-        HomeDriver fragment = new HomeDriver();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_driver, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_driver, container, false);
+
+        ibtnNew = view.findViewById(R.id.imageButton);
+        ibtnOld = view.findViewById(R.id.imageButton2);
+        ibtnStatic = view.findViewById(R.id.imageButton5);
+        ibtnContact = view.findViewById(R.id.imageButton4);
+
+        ibtnNew.setOnClickListener(v -> {
+            Processing processing = new Processing();
+            replaceFragment(processing);
+        });
+        ibtnOld.setOnClickListener(v -> {
+            Delevered delevered = new Delevered();
+            replaceFragment(delevered);
+        });
+        ibtnContact.setOnClickListener(v ->{
+            Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+        });
+        ibtnStatic.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+        });
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.display_layout, new Delevering());
+        transaction.commit();
+
+        return view;
+    }
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

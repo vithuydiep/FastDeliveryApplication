@@ -15,7 +15,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/txtcusaddress"
+        android:id="@+id/edtAddress"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:background="@drawable/textfeild"
@@ -26,9 +26,8 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
 
     <EditText
         android:id="@+id/txtcususername"
@@ -42,7 +41,6 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -54,15 +52,15 @@
         android:background="@drawable/btn_icon"
         android:src="@drawable/customer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
     <EditText
-        android:id="@+id/txtcusname"
+        android:id="@+id/edtName"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/textfeild"
         android:ems="10"
         android:fontFamily="@font/poppins"
@@ -71,12 +69,12 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <EditText
-        android:id="@+id/txtcusgender"
+        android:id="@+id/edtGender"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
@@ -88,12 +86,11 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        app:layout_constraintTop_toBottomOf="@+id/txtGender" />
 
     <EditText
-        android:id="@+id/txtcusphone"
+        android:id="@+id/edtPhone"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:background="@drawable/textfeild"
@@ -104,12 +101,11 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
     <EditText
-        android:id="@+id/txtcusemail"
+        android:id="@+id/edtEmail"
         android:layout_width="284dp"
         android:layout_height="48dp"
         android:background="@drawable/textfeild"
@@ -120,19 +116,18 @@
         android:paddingLeft="20dp"
         android:textColor="#4A4B4D"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:fontFamily="@font/poppins"
         android:text="Name:"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/txtcusname"
+        app:layout_constraintBottom_toTopOf="@+id/edtName"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -144,10 +139,10 @@
         android:text="Username"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcusaddress" />
+        app:layout_constraintTop_toBottomOf="@+id/edtAddress" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/txtAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -155,10 +150,10 @@
         android:text="Address"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcusemail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/txtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -166,10 +161,10 @@
         android:text="Email"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcusphone" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/txtPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -177,10 +172,10 @@
         android:text="Phone"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcusgender" />
+        app:layout_constraintTop_toBottomOf="@+id/edtGender" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/txtGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -188,7 +183,7 @@
         android:text="Gender"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcusname" />
+        app:layout_constraintTop_toBottomOf="@+id/edtName" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -245,7 +240,7 @@
         tools:layout_editor_absoluteX="2dp" />
 
     <ImageButton
-        android:id="@+id/btndriverback"
+        android:id="@+id/btncusback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -255,18 +250,5 @@
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/switchstatecustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="State"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/circleImageView"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="@+id/circleImageView"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-        tools:checked="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

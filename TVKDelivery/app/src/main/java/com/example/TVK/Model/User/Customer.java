@@ -1,8 +1,6 @@
 package com.example.TVK.Model.User;
 
 import android.content.Context;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -13,10 +11,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.IGetAPICallback;
 import com.example.TVK.Ultis.IViewUltis;
-import com.example.TVK.View.CustomerAdapter;
+import com.example.TVK.View.Adapter.CustomerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,12 +27,7 @@ import java.util.Map;
 public class Customer extends User implements ICustomer , Serializable {
     private static Customer instance;
     private IGetAPICallback iGetAPICallback;
-    CallBack callBack;
 
-    public Customer(String name, String phone, String email)
-    {
-        super(name,phone,email);
-    }
 
     public Customer(int idUser, String fullName, String gender, String phone, String address, String email, String userName, String passWord, String activationCode, String status, String resetPassword, String typeOfUser)
     {
@@ -52,16 +44,18 @@ public class Customer extends User implements ICustomer , Serializable {
         }
         return instance;
     }
+
+
     public void addNewCustomter(Customer customer, Context context, IViewUltis iViewUltis, IGetAPICallback iGetAPICallback_argument) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         iGetAPICallback = iGetAPICallback_argument;
-        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, super.baseUrl + "getdata.php",
+        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, super.baseUrl+"getdata.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             //JSONArray jsonArray = new JSONArray(response);
-                            iGetAPICallback.onGetDataSucess(null, null, response, iViewUltis, "addNewCustomer");
+                            iGetAPICallback.onGetDataSucess(null,null,response,iViewUltis,"addNewCustomer");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -69,145 +63,30 @@ public class Customer extends User implements ICustomer , Serializable {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                iGetAPICallback.onResponseError(error.getMessage(), iViewUltis);
-            }
-        }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type", "register");
-                params.put("username", customer.getUserName().trim());
-                params.put("password", customer.getPassWord().trim());
-                params.put("phone", customer.getPhone().trim());
-                params.put("activationcode", customer.getActivationCode().trim());
-                params.put("state", customer.getStatus().trim());
-                params.put("typeofuser", customer.getTypeOfUser().trim());
-                return params;
-            }
-        };
-        requestQueue.add(jsonArrayRequest);
-    }
-
-
-   public void addNewCustomter(Customer customer, Context context ){
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, super.baseUrl+"getdata.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("Registration Successfully"))
-                        {
-                            Toast.makeText(context, "Registration Successfully",Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(),Toast.LENGTH_LONG).show();
-
+                iGetAPICallback.onResponseError(error.getMessage(),iViewUltis);
             }
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("type","newaccountcustomer");
+                params.put("type","register");
                 params.put("username",customer.getUserName().trim());
-                params.put("name",customer.getFullName().trim());
                 params.put("password",customer.getPassWord().trim());
                 params.put("phone",customer.getPhone().trim());
+                params.put("activationcode",customer.getActivationCode().trim());
                 params.put("state",customer.getStatus().trim());
                 params.put("typeofuser",customer.getTypeOfUser().trim());
                 return params;
             }
         };
-
+        /*jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
         requestQueue.add(jsonArrayRequest);
     }
 
-    @Override
-    public void checkExistPhone(Context context, CallBack callBack_ar,EditText txtcusname_add, EditText txtcusphone_add, EditText txtcusemail_add) {
-        callBack = callBack_ar;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist Phone"))
-                {
-                    txtcusphone_add.requestFocus();
-                    txtcusphone_add.setError("Number phone is exist");
-                    callBack.onGetDataSucess(null,null,response,context,null);
-
-                }else if (response.equals("No Exist Phone")){
-                    //txtcusphone_add.requestFocus();
-                    //txtcusphone_add.setError("Number phone is not exist");
-                    Customer customer = new Customer(txtcusname_add.getText().toString().trim(),txtcusphone_add.getText().toString().trim(),txtcusemail_add.getText().toString().trim());
-                    callBack.onGetDataSucess(null,null,response,context,customer);
-                    txtcusemail_add.setText("");
-                    txtcusname_add.setText("");
-                    txtcusphone_add.setText("");
-                    txtcusemail_add.setCursorVisible(false);
-                    txtcusname_add.setCursorVisible(false);
-                    txtcusphone_add.setCursorVisible(false);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","phone");
-                params.put("phone",txtcusphone_add.getText().toString().trim());
-                return params;
-            }
-
-        };
-        requestQueue.add(stringRequest);
-
-    }
-
-    public void updateStateCustomer(Context context, String state, String phone)
-    {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editStateUser");
-                params.put("phone",phone);
-                params.put("state",state);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
     @Override
     public void getAllDataCustomer(Context context, ArrayList<Customer> customerArrayList, CustomerAdapter adapter) {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -235,8 +114,8 @@ public class Customer extends User implements ICustomer , Serializable {
                                             object.getString("Username"),
                                             object.getString("Password"),
                                             object.getString("ActivationCode"),
-                                            object.getString("State"),
                                             object.getString("ResetPasswordCode"),
+                                            object.getString("State"),
                                             object.getString("TypeUser")
                                     ));
                                 } catch (JSONException e) {
@@ -260,8 +139,6 @@ public class Customer extends User implements ICustomer , Serializable {
             };
             requestQueue.add(jsonArrayRequest);
     }
-
-
 
 
     public static class CustomerBuilder {
@@ -356,5 +233,4 @@ public class Customer extends User implements ICustomer , Serializable {
         }
 
     }
-
 }

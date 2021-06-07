@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.TVK.Controller.ILoginController;
 import com.example.TVK.Controller.LoginController;
 import com.example.TVK.R;
+import com.example.TVK.Ultis.GlobalUser;
 import com.example.TVK.Ultis.IViewUltis;
 import com.google.gson.Gson;
 
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     Dialog dialog_API;
     SharedPreferences sharedPreferences;
     String message=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,6 +199,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         {
             rememberMe(cbGhiNhoDangNhap.isChecked(),type_of_user,jsonObject);
             Intent intent;
+            GlobalUser.getInstances().put("logined_user",jsonObject);
             switch (type_of_user)
             {
                 case "ADMIN":
@@ -240,9 +243,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     public void close_dialogLoading() {
             dialog_API.dismiss();
     }
-
-
-
 
 
 }

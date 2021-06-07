@@ -1,5 +1,5 @@
 HƯỚNG DẪN THỰC THI CODE
--------------------------
+-----------------------
 Bước 1: Tải Xampp [https://www.apachefriends.org/index.html]
 Bước 2: Sau khi tải thành công mở Xampp và start Apache và MySQL
 Bước 3: Vào [http://localhost/phpmyadmin] tiến hành import file [https://github.com/vithuydiep/FastDeliveryApplication/blob/main/Database/delivery.sql]

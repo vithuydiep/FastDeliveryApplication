@@ -16,22 +16,24 @@ import com.android.volley.toolbox.Volley;
 import com.example.TVK.Model.IOrder;
 import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.IGetAPICallback;
-import com.example.TVK.View.DriverAdapter;
+import com.example.TVK.View.Adapter.DriverAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Driver extends User implements IDriver, Serializable {
+public class Driver extends User implements IDriver{
     private static Driver instance;
     private String gplx;
     private String idnumber;
     CallBack callBack;
+
 
     public Driver(String fullName, String gender, String phone, String address, String email, String gplx, String idnumber) {
         super(fullName, gender, phone, address, email);
@@ -60,11 +62,10 @@ public class Driver extends User implements IDriver, Serializable {
         this.gplx = gplx;
         this.idnumber = idnumber;
     }
-
     private IGetAPICallback iGetAPICallback;
     private IOrder iOrder;
 
-    String baseUrl = "http://192.168.1.6/androidwebservce/";
+    String baseUrl = "http://192.168.1.71/androidwebservce/";
 
     public Driver()
     {
@@ -77,8 +78,6 @@ public class Driver extends User implements IDriver, Serializable {
         return instance;
     }
 
-
-    @Override
     public void getAllDataDriver(Context context, ArrayList<Driver> driverArrayList, DriverAdapter adapter) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
@@ -91,7 +90,7 @@ public class Driver extends User implements IDriver, Serializable {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        for (int i=0 ; i< array.length(); i++)
+                        for (int i = 0 ; i< array.length(); i++)
                         {
                             try {
                                 JSONObject object = array.getJSONObject(i);
@@ -133,50 +132,6 @@ public class Driver extends User implements IDriver, Serializable {
         requestQueue.add(jsonArrayRequest);
     }
 
-    @Override
-    public void addNewDriver(Driver driver, Context context) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, super.baseUrl+"getdata.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("Registration Successfully"))
-                        {
-                            Toast.makeText(context, "Registration Successfully",Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(),Toast.LENGTH_LONG).show();
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","addnewdriver");
-                params.put("username",driver.getUserName().trim());
-                params.put("name",driver.getFullName().trim());
-                params.put("password",driver.getPassWord().trim());
-                params.put("phone",driver.getPhone().trim());
-                params.put("state",driver.getStatus().trim());
-                params.put("typeofuser",driver.getTypeOfUser().trim());
-                params.put("email", driver.getEmail().trim());
-                params.put("gender",driver.getGender().trim());
-                params.put("address",driver.getAddress().trim());
-                params.put("idnumber", driver.getIdnumber().trim());
-                params.put("license",driver.getGplx().trim());
-                return params;
-            }
-        };
-        requestQueue.add(jsonArrayRequest);
-
-    }
-
-    @Override
     public void checkExistPhone(Context context, CallBack callBack_a, EditText txtname, EditText txtphone, EditText txtgender, EditText txtemail, EditText txtidnumber, EditText txtlicense, EditText txtaddress) {
         callBack = callBack_a;
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -228,155 +183,10 @@ public class Driver extends User implements IDriver, Serializable {
         };
         requestQueue.add(stringRequest);
     }
-
-
-    @Override
-    public void updateStateDriver(Context context, String state, String phone) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editStateUser");
-                params.put("phone",phone);
-                params.put("state",state);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void checkExistLicense(Context context, CallBack callBack_a, EditText txtname, EditText txtphone, EditText txtgender, EditText txtemail, EditText txtidnumber, EditText txtlicense, EditText txtaddress) {
-        callBack = callBack_a;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist License"))
-                {
-                    txtlicense.requestFocus();
-                    txtlicense.setError("Driver License is exist");
-                    callBack.onGetDataSucess(null,null,response,context,null);
-
-                }else if (response.equals("No Exist License")){
-                    //txtcusphone_add.requestFocus();
-                    //txtcusphone_add.setError("Number phone is not exist");
-                    Driver driver = new Driver(getText(txtname),getText(txtgender),getText(txtphone),getText(txtaddress),getText(txtemail),getText(txtlicense),getText(txtidnumber));
-                    callBack.onGetDataSucess(null,null,response,context,driver);
-                    /*txtemail.setText("");
-                    txtname.setText("");
-                    txtphone.setText("");
-                    txtaddress.setText("");
-                    txtgender.setText("");
-                    txtidnumber.setText("");
-                    txtlicense.setText("");
-                    txtemail.setCursorVisible(false);
-                    txtname.setCursorVisible(false);
-                    txtphone.setCursorVisible(false);
-                    txtaddress.setCursorVisible(false);
-                    txtgender.setCursorVisible(false);
-                    txtidnumber.setCursorVisible(false);
-                    txtlicense.setCursorVisible(false);*/
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","driverlicense");
-                params.put("driverlicense",getText(txtlicense));
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void checkExistID(Context context, CallBack callBack_a, EditText txtname, EditText txtphone, EditText txtgender, EditText txtemail, EditText txtidnumber, EditText txtlicense, EditText txtaddress) {
-        callBack = callBack_a;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist Idnumber"))
-                {
-                    txtidnumber.requestFocus();
-                    txtidnumber.setError("ID Number is exist");
-                    callBack.onGetDataSucess(null,null,response,context,null);
-
-                }else if (response.equals("No Exist Idnumber")){
-                    //txtcusphone_add.requestFocus();
-                    //txtcusphone_add.setError("Number phone is not exist");
-                    Driver driver = new Driver(getText(txtname),getText(txtgender),getText(txtphone),getText(txtaddress),getText(txtemail),getText(txtlicense),getText(txtidnumber));
-                    callBack.onGetDataSucess(null,null,response,context,driver);
-                    /*txtemail.setText("");
-                    txtname.setText("");
-                    txtphone.setText("");
-                    txtaddress.setText("");
-                    txtgender.setText("");
-                    txtidnumber.setText("");
-                    txtlicense.setText("");
-                    txtemail.setCursorVisible(false);
-                    txtname.setCursorVisible(false);
-                    txtphone.setCursorVisible(false);
-                    txtaddress.setCursorVisible(false);
-                    txtgender.setCursorVisible(false);
-                    txtidnumber.setCursorVisible(false);
-                    txtlicense.setCursorVisible(false);*/
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","idnumber");
-                params.put("idnumber",getText(txtidnumber));
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-
-    }
-
     public String getText(EditText name)
     {
         return name.getText().toString().trim();
     }
-
     public static class DriverBuilder extends UserBuilder{
         private int id;
         private String fullName;
@@ -483,4 +293,43 @@ public class Driver extends User implements IDriver, Serializable {
         }
 
     }
+    @Override
+    public void updateInfoDriver(Context context, String name, String gender, String phone, String email, String address) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.equals("Successful"))
+                {
+                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
+
+                }else if(response.equals("Something went wrong"))
+                {
+                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("type","editInfoDriver");
+                params.put("name", name);
+                params.put("gender", gender);
+                params.put("phone", phone);
+                params.put("email", email);
+                params.put("address", address);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+
+
 }
