@@ -26,6 +26,17 @@
         tools:layout_editor_absoluteX="-1dp"
         tools:layout_editor_absoluteY="1dp" />
 
+    <ImageButton
+        android:id="@+id/btnback2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/backicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView37"
         android:layout_width="wrap_content"

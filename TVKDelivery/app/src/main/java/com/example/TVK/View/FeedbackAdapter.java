@@ -33,7 +33,7 @@ public class FeedbackAdapter extends BaseAdapter {
 
     public interface IClickItemListener
     {
-        void onClickItemFeedback(Feedback feedback);
+        void onClickItemFeedback(String id);
     }
     @Override
     public Object getItem(int position) {
@@ -69,7 +69,7 @@ public class FeedbackAdapter extends BaseAdapter {
         holder.txtidorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iClickItemListener.onClickItemFeedback(feedback);
+                iClickItemListener.onClickItemFeedback(String.valueOf(feedback.getIdOrder()));
             }
         });
 

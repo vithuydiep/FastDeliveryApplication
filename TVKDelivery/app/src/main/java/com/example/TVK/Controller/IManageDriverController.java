@@ -11,4 +11,5 @@ public interface IManageDriverController {
     void OnAddNewDriver(String txtname, String txtphone, String txtgender, String txtemail, String txtidnumber, String txtaddress, String txtlicense,Context context);
     boolean isCheck();
     void updateStateDriver(Context context, String phone, String state);
+    void OnCheckDataUpdate(EditText nameupdate,EditText editText, Context context, String id, String type);
 }

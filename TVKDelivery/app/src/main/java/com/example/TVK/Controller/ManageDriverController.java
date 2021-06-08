@@ -30,11 +30,14 @@ public class ManageDriverController implements IManageDriverController, CallBack
     String name, phone, email, gender, idnumber, license,address;
     boolean check;
     IAddNewDriver iAddNewDriver;
-    static Boolean ExistPhone =false ,ExistID=false,ExistLicense=false;
+    Boolean ExistPhone =false ,ExistID=false,ExistLicense=false;
 
 
     public ManageDriverController(IListDriver iListDriver) {
         this.iListDriver = iListDriver;
+        ExistPhone = false;
+        ExistID=false;
+        ExistLicense=false;
     }
 
     public ManageDriverController() {
@@ -173,9 +176,6 @@ public class ManageDriverController implements IManageDriverController, CallBack
                 .setTypeOfUser("DRIVER")
                 .build();
         new_driver.addNewDriver(new_driver,context);
-
-
-
     }
 
     @Override
@@ -186,6 +186,88 @@ public class ManageDriverController implements IManageDriverController, CallBack
     @Override
     public void updateStateDriver(Context context, String state, String phone) {
             iDriver.updateStateDriver(context,state,phone);
+    }
+
+    @Override
+    public void OnCheckDataUpdate(EditText nameupdate,EditText editText, Context context, String id, String type) {
+        if(type.equals("Phone")) {
+            phone = editText.getText().toString().trim();
+            if (TextUtils.isEmpty(phone)) {
+                editText.requestFocus();
+                editText.setError("Field cannot be left blank");
+                return;
+            } else {
+                //phone match available format
+                if (!ValidateString.isValid(phone, "phone")) {
+                    editText.requestFocus();
+                    editText.setError("Format of phone is +84 xxxx, fill in xxxx");
+                    return;
+                }
+            }
+            CallBack callBack = new ManageDriverController();
+            iDriver.checkExistUpdate(context,callBack,nameupdate,editText,id,type);
+        }
+        if(type.equals("Email"))
+        {
+            email = editText.getText().toString().trim();
+            if(TextUtils.isEmpty(email))
+            {
+                editText.requestFocus();
+                editText.setError("Field cannot be left blank");
+                return;
+            }else
+            if(!ValidateString.isValid(email,"email"))
+            {
+                editText.requestFocus();
+                editText.setError("Field cannot be format");
+                return;
+            }
+            else {
+                iDriver.updateEmail(context,id,nameupdate,email);
+            }
+        }
+        if(type.equals("Address"))
+        {
+            address = editText.getText().toString().trim();
+            if(TextUtils.isEmpty(address))
+            {
+                editText.requestFocus();
+                editText.setError("Field cannot be left blank");
+                return;
+            }else
+            {
+                iDriver.updateAddress(context,id,nameupdate,address);
+            }
+        }
+        if(type.equals("IDNum"))
+        {
+            idnumber= editText.getText().toString().trim();
+            if(TextUtils.isEmpty(idnumber))
+            {
+                editText.requestFocus();
+                editText.setError("Field cannot be left blank");
+                return;
+            }else {
+                CallBack callBack = new ManageDriverController();
+                iDriver.checkExistUpdateID(context,callBack,nameupdate,editText,id,type);
+            }
+        }
+        if(type.equals("License"))
+        {
+            license = editText.getText().toString().trim();
+            if(TextUtils.isEmpty(license))
+            {
+                editText.requestFocus();
+                editText.setError("Field cannot be left blank");
+                return;
+            }else {
+                CallBack callBack = new ManageDriverController();
+                iDriver.checkExistUpdateLicense(context,callBack,nameupdate,editText,id,type);
+            }
+        }
+
+
+
     }
 
 
@@ -216,12 +298,26 @@ public class ManageDriverController implements IManageDriverController, CallBack
             ExistLicense = false;
         }
 
-
-
         if(ExistPhone && ExistLicense && ExistID ) {
             Driver driver = (Driver) object;
             OnAddNewDriver(driver.getFullName(), driver.getPhone(), driver.getGender(), driver.getEmail(), driver.getIdnumber(), driver.getAddress(), driver.getGplx(), context);
         }
+        if(string_response.equals("Update phone No Exist"))
+        {
+            Driver driver = (Driver) object;
+            driver.updatePhone(context,String.valueOf(driver.getIdUser()),driver.getPhone());
+        }
+        if(string_response.equals("Update ID No Exist"))
+        {
+            Driver driver = (Driver) object;
+            driver.updateIDNumber(context,String.valueOf(driver.getIdUser()),driver.getIdnumber());
+        }
+        if(string_response.equals("Update License No Exist"))
+        {
+            Driver driver = (Driver) object;
+            driver.updateLicense(context,String.valueOf(driver.getIdUser()),driver.getGplx());
+        }
+
     }
 
     @Override

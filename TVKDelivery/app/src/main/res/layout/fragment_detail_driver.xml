@@ -4,7 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     tools:context=".View.Fragment.DetailDriver">
+
+    <ImageButton
+        android:id="@+id/btnEditIDNum"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="7dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdriveridnumber"
+        app:layout_constraintStart_toEndOf="@+id/txtdriveridnumber"
+        app:layout_constraintTop_toTopOf="@+id/txtdriveridnumber" />
+
+    <ImageButton
+        android:id="@+id/btnEditLicense"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="7dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdriverlicense"
+        app:layout_constraintStart_toEndOf="@+id/txtdriverlicense"
+        app:layout_constraintTop_toTopOf="@+id/txtdriverlicense" />
+
+    <ImageButton
+        android:id="@+id/btnEditAddress"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="7dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdriveraddress"
+        app:layout_constraintStart_toEndOf="@+id/txtdriveraddress"
+        app:layout_constraintTop_toTopOf="@+id/txtdriveraddress" />
+
+    <ImageButton
+        android:id="@+id/btnEditEmail"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="7dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdriveremail"
+        app:layout_constraintStart_toEndOf="@+id/txtdriveremail"
+        app:layout_constraintTop_toTopOf="@+id/txtdriveremail" />
 
     <EditText
         android:id="@+id/txtdriverlicense"
@@ -13,6 +59,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Driver's License"
         android:inputType="textPersonName"
@@ -57,6 +104,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="ID Number"
         android:inputType="textPersonName"
@@ -73,6 +121,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Address"
         android:inputType="textPersonName"
@@ -99,9 +148,10 @@
         android:id="@+id/txtdrivergender"
         android:layout_width="284dp"
         android:layout_height="48dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Gender"
         android:inputType="textPersonName"
@@ -133,6 +183,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Phone"
         android:inputType="textPersonName"
@@ -150,6 +201,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -195,6 +247,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/textfeild"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/poppins"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -227,6 +280,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/btndriverback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#0CFFFFFF"
+        android:src="@drawable/backicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtdrivername"
         android:layout_width="wrap_content"
@@ -239,27 +303,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toTopOf="@+id/circleImageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.161" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
         android:layout_width="63dp"
         android:layout_height="63dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/btn_icon"
         android:src="@drawable/driver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btndriverback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#0CFFFFFF"
-        android:src="@drawable/backicon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -276,5 +329,17 @@
         app:layout_constraintStart_toStartOf="@+id/txtdrivername"
         app:layout_constraintTop_toBottomOf="@+id/txtdrivername"
         tools:checked="true" />
+
+    <ImageButton
+        android:id="@+id/btnEditPhone"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/txtdriverphone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toEndOf="@+id/txtdriverphone"
+        app:layout_constraintTop_toTopOf="@+id/txtdriverphone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

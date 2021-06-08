@@ -28,7 +28,7 @@ public class ContactAdapter extends BaseAdapter {
 
     public interface IClickItemListener
     {
-        void onClickItemContact(Contact contact);
+        void onClickItemContact(String id);
     }
     @Override
     public int getCount() {
@@ -69,7 +69,7 @@ public class ContactAdapter extends BaseAdapter {
         holder.txtid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iClickItemListener.onClickItemContact(contact);
+                iClickItemListener.onClickItemContact(String.valueOf(contact.getIduser()) );
             }
         });
 

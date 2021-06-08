@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.TVK.Model.User.User;
 import com.example.TVK.R;
 import com.example.TVK.View.LoginActivity;
 
@@ -16,6 +19,9 @@ import com.example.TVK.View.LoginActivity;
 public class Category extends Fragment {
 
     Button btndangxuat;
+    TextView txtNameAdmin;
+    ImageButton btncus, btndriver, btnnotify, btncontact;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,6 +68,10 @@ public class Category extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_category, container, false);
         btndangxuat = view.findViewById(R.id.btndangxuat);
+        btncus = view.findViewById(R.id.btncus_categogy);
+        btndriver = view.findViewById(R.id.btndriver_categogy);
+        btncontact = view.findViewById(R.id.btncontact_categogy);
+        btnnotify = view.findViewById(R.id.btnnotify_categogy);
         btndangxuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +79,50 @@ public class Category extends Fragment {
                 startActivity(intent);
             }
         });
+
+        txtNameAdmin = (TextView) view.findViewById(R.id.txtnameAd);
+        Bundle bundle = this.getArguments();
+        if (bundle != null)
+        {
+            User user = (User) bundle.getSerializable("admin");
+            txtNameAdmin.setText(user.getFullName());
+        }
+        btnnotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AddNotification();
+                changeFragment(fragment);
+            }
+        });
+        btncontact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ListContact();
+                changeFragment(fragment);
+            }
+        });
+        btndriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ListDriver();
+                changeFragment(fragment);
+            }
+        });
+        btncus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new ListCustomer();
+                changeFragment(fragment);
+            }
+        });
+
+
+
         return view;
+    }
+    public void changeFragment(Fragment fragment) {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
+
     }
 
 }

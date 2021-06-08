@@ -19,10 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class User implements IUser{
+public class User implements IUser, Serializable {
     private int idUser;
     private String fullName;
     private String gender;
@@ -37,20 +38,15 @@ public class User implements IUser{
     private String typeOfUser;
     private int isReceiveNotification;
 
-    public User(int idUser, String fullName, String gender, String phone, String address, String email, String userName, String passWord, String activationCode, String status, String resetPassword, String typeOfUser, int isReceiveNotification) {
-        this.idUser = idUser;
-        this.fullName = fullName;
-        this.gender = gender;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
-        this.userName = userName;
-        this.passWord = passWord;
-        this.activationCode = activationCode;
-        this.status = status;
-        this.resetPassword = resetPassword;
-        this.typeOfUser = typeOfUser;
-        this.isReceiveNotification = isReceiveNotification;
+    private static User instance;
+
+    private IGetAPICallback iGetAPICallback;
+    private IOrder iOrder;
+
+    String baseUrl = "http://192.168.1.7/androidwebservce/";
+
+    public User(){
+
     }
 
     public int getIsReceiveNotification() {
@@ -61,63 +57,13 @@ public class User implements IUser{
         this.isReceiveNotification = isReceiveNotification;
     }
 
-    private static User instance;
-
-    private IGetAPICallback iGetAPICallback;
-    private IOrder iOrder;
-
-    String baseUrl = "http://192.168.1.10/androidwebservce/";
-
-    public User(){
-
-    }
-
-    public void setIdUser(int idUser) {
+    public User(int idUser, String phone) {
         this.idUser = idUser;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setResetPassword(String resetPassword) {
-        this.resetPassword = resetPassword;
-    }
-
-    public void setTypeOfUser(String typeOfUser) {
-        this.typeOfUser = typeOfUser;
+    public User(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdUser() {

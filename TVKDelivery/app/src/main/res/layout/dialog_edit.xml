@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/txtnameedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins"
+        android:text="Phone"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/txteditdriver"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="@+id/txteditdriver"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txteditdriver"
+        android:layout_width="284dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnconfirm_edit"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btnconfirm"
+        android:fontFamily="@font/poppins"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintEnd_toEndOf="@+id/txteditdriver"
+        app:layout_constraintTop_toBottomOf="@+id/txteditdriver" />
+
+    <Button
+        android:id="@+id/btncancel_edit"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btncancel"
+        android:fontFamily="@font/poppins"
+        android:text="Back"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintStart_toStartOf="@+id/txteditdriver"
+        app:layout_constraintTop_toBottomOf="@+id/txteditdriver" />
+</androidx.constraintlayout.widget.ConstraintLayout>

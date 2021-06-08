@@ -26,7 +26,7 @@ public class Feedback implements IFeedback{
     private int idOrder;
     private float rating;
     private String note;
-    String baseUrl = "http://192.168.1.6/androidwebservce/";
+    String baseUrl = "http://192.168.1.7/androidwebservce/";
 
     public Feedback() {
     }

@@ -1,10 +1,12 @@
 package com.example.TVK.View.Fragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,17 +26,17 @@ import com.example.TVK.R;
  * create an instance of this fragment.
  */
 public class DetailDriver extends Fragment {
-    EditText txtgender, txtphone, txtemail, txtaddr, txtusername,txtidnumber, txtlicense;
-    TextView txtname;
-    ImageButton btnback;
+    EditText txtgender, txtphone, txtemail, txtaddr, txtusername,txtidnumber, txtlicense,txteditdriver;
+    TextView txtname, txtnameedit;
+    ImageButton btnback, btneditPhone, btneditEmail, btneditAddress, btnIDnum, btnLicense;
     Switch state;
-    Dialog dialog;
+    Dialog dialog, dialogedit;
     TextView textView;
-    Button ok ;
-    Button cancel;
+    Button ok,cancel, btnedit, btncancel;
     String statedriver;
     public static final String TAG = DetailInforCustomer.class.getName();
     IManageDriverController iManageDriverController;
+    Driver driver;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,22 +83,12 @@ public class DetailDriver extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_detail_driver, container, false);
-        txtname = (TextView) view.findViewById(R.id.txtdrivername);
-        txtgender = (EditText) view.findViewById(R.id.txtdrivergender);
-        txtphone = (EditText) view.findViewById(R.id.txtdriverphone);
-        txtaddr = (EditText) view.findViewById(R.id.txtdriveraddress);
-        txtemail = (EditText) view.findViewById(R.id.txtdriveremail);
-        txtusername = (EditText) view.findViewById(R.id.txtdriverusername);
-        txtidnumber = (EditText) view.findViewById(R.id.txtdriveridnumber);
-        txtlicense =(EditText) view.findViewById(R.id.txtdriverlicense);
-        btnback = (ImageButton) view.findViewById(R.id.btndriverback);
-        state =(Switch) view.findViewById(R.id.switchstatedriver);
-        setVisibleFalse();
+        AnhXa(view);
         initDialog();
         Bundle bundle = this.getArguments();
         if (bundle != null)
         {
-            Driver driver = (Driver) bundle.getSerializable("object_driver");
+            driver = (Driver) bundle.getSerializable("object_driver");
             if(driver !=null)
             {
                 txtname.setText(driver.getFullName());
@@ -141,16 +133,65 @@ public class DetailDriver extends Fragment {
                 }
             }
         });
+
+        btneditPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialogEdit("Phone",txtphone);
+                txteditdriver.setText(driver.getPhone());
+                dialogedit.show();
+            }
+        });
+        btneditEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialogEdit("Email",txtemail);
+                txteditdriver.setText(driver.getEmail());
+                dialogedit.show();
+            }
+        });
+        btneditAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialogEdit("Address",txtaddr);
+                txteditdriver.setText(driver.getAddress());
+                dialogedit.show();
+            }
+        });
+        btnIDnum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialogEdit("IDNum",txtidnumber);
+                txteditdriver.setText(driver.getIdnumber());
+                dialogedit.show();
+            }
+        });
+        btnLicense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initDialogEdit("License",txtlicense);
+                txteditdriver.setText(driver.getGplx());
+                dialogedit.show();
+            }
+        });
+
+
+
         return view;
+    }
+    public void setVisibleTrue()
+    {
+        txtphone.setEnabled(true);
+        txtaddr.setEnabled(true);
+        txtemail.setEnabled(true);
+        txtidnumber.setEnabled(true);
+        txtlicense.setEnabled(true);
     }
     public void setVisibleFalse()
     {
-        txtname.setEnabled(false);
-        txtgender.setEnabled(false);
         txtphone.setEnabled(false);
         txtaddr.setEnabled(false);
         txtemail.setEnabled(false);
-        txtusername.setEnabled(false);
         txtidnumber.setEnabled(false);
         txtlicense.setEnabled(false);
     }
@@ -165,6 +206,7 @@ public class DetailDriver extends Fragment {
         textView = dialog.findViewById(R.id.txtquestion);
         ok = dialog.findViewById(R.id.dialog_ok);
         cancel = dialog.findViewById(R.id.dialog_cancel);
+
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,5 +239,62 @@ public class DetailDriver extends Fragment {
                 dialog.dismiss();
             }
         });
+    }
+    public void initDialogEdit(String type, EditText nameupdate)
+    {
+        dialogedit = new Dialog(getActivity());
+        dialogedit.setContentView(R.layout.dialog_edit);
+        dialogedit.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialogedit.getWindow().setBackgroundDrawableResource(R.drawable.background_dialog);
+        dialogedit.setCancelable(false);
+        dialogedit.getWindow().getAttributes().windowAnimations =R.style.animation;
+        txteditdriver = (EditText) dialogedit.findViewById(R.id.txteditdriver);
+        btnedit = (Button) dialogedit.findViewById(R.id.btnconfirm_edit);
+        btncancel = (Button) dialogedit.findViewById(R.id.btncancel_edit);
+        txtnameedit = (TextView) dialogedit.findViewById(R.id.txtnameedit);
+        txteditdriver.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                hideKeyboard(v,hasFocus);
+            }
+        });
+        btnedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iManageDriverController = new ManageDriverController();
+                iManageDriverController.OnCheckDataUpdate(nameupdate,txteditdriver,getContext(),String.valueOf(driver.getIdUser()),type);
+            }
+        });
+        txtnameedit.setText(type);
+        btncancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogedit.dismiss();
+            }
+        });
+    }
+    public void AnhXa(View view)
+    {
+        txtname = (TextView) view.findViewById(R.id.txtdrivername);
+        txtgender = (EditText) view.findViewById(R.id.txtdrivergender);
+        txtphone = (EditText) view.findViewById(R.id.txtdriverphone);
+        txtaddr = (EditText) view.findViewById(R.id.txtdriveraddress);
+        txtemail = (EditText) view.findViewById(R.id.txtdriveremail);
+        txtusername = (EditText) view.findViewById(R.id.txtdriverusername);
+        txtidnumber = (EditText) view.findViewById(R.id.txtdriveridnumber);
+        txtlicense =(EditText) view.findViewById(R.id.txtdriverlicense);
+        btnback = (ImageButton) view.findViewById(R.id.btndriverback);
+        state =(Switch) view.findViewById(R.id.switchstatedriver);
+        btneditPhone = (ImageButton) view.findViewById(R.id.btnEditPhone);
+        btneditAddress = (ImageButton) view.findViewById(R.id.btnEditAddress);
+        btneditEmail =(ImageButton) view.findViewById(R.id.btnEditEmail);
+        btnIDnum = (ImageButton) view.findViewById(R.id.btnEditIDNum);
+        btnLicense = (ImageButton) view.findViewById(R.id.btnEditLicense);
+    }
+    public void hideKeyboard(View view, boolean hasFocus) {
+        if(!hasFocus) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

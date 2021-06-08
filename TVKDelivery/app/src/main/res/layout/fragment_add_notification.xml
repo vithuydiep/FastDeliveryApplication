@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".View.Fragment.AddNotification">
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Add notification"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnconfirm_add2"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btnconfirm"
+        android:fontFamily="@font/poppins"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toEndOf="@+id/btncancel_add2"
+        app:layout_constraintTop_toBottomOf="@+id/txtcontent_notify" />
+
+    <Button
+        android:id="@+id/btncancel_add2"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btncancel"
+        android:fontFamily="@font/poppins"
+        android:text="Back"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtcontent_notify" />
+
+    <EditText
+        android:id="@+id/txttitle_notify"
+        android:layout_width="287dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/textfeild"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="Title"
+        android:maxLines="1"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:singleLine="true"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+    <EditText
+        android:id="@+id/txtcontent_notify"
+        android:layout_width="286dp"
+        android:layout_height="163dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textfeild"
+        android:fontFamily="@font/poppins"
+        android:gravity="top|left"
+        android:hint="Content"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:singleLine="false"
+        android:textColor="#4A4B4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txttitle_notify" />
+
+    <ImageView
+        android:id="@+id/imageView29"
+        android:layout_width="162dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="592dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="179dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="580dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Fill all of text to create notification for customer"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView52"
+        app:layout_constraintStart_toStartOf="@+id/textView52"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="162dp"
+        android:layout_height="189dp"
+        android:layout_marginBottom="36dp"
+        android:src="@drawable/ellipse"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

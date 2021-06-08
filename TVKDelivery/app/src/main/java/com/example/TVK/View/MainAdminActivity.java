@@ -1,6 +1,8 @@
 package com.example.TVK.View;
 
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 
@@ -9,16 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.TVK.Model.Order;
 import com.example.TVK.Model.User.Customer;
 import com.example.TVK.Model.User.Driver;
+import com.example.TVK.Model.User.User;
 import com.example.TVK.R;
-import com.example.TVK.View.Fragment.AddNewDriver;
+import com.example.TVK.View.Fragment.AddNotification;
 import com.example.TVK.View.Fragment.Category;
 import com.example.TVK.View.Fragment.DetailDriver;
 import com.example.TVK.View.Fragment.DetailInforCustomer;
+import com.example.TVK.View.Fragment.DetailOrder;
 import com.example.TVK.View.Fragment.HomeAdmin;
 import com.example.TVK.View.Fragment.ListCustomer;
-import com.example.TVK.View.Fragment.Notification;
+import com.example.TVK.View.Fragment.ListOrder;
 
 import java.io.IOException;
 
@@ -31,12 +36,16 @@ import okhttp3.Response;
 public class MainAdminActivity extends AppCompatActivity implements IMainAdminActivity {
     MeowBottomNavigation bottomNavigation;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
+        Intent intent = getIntent();
+        User admin = (User) intent.getSerializableExtra("adminobject");
 
         bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
+
 
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_order));
@@ -48,7 +57,7 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Fragment fragment = null;
-                switch (item.getId()){
+                switch (item.getId()) {
                     case 1:
                         fragment = new HomeAdmin();
                         break;
@@ -56,13 +65,16 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
                         fragment = new ListCustomer();
                         break;
                     case 3:
-                        fragment =new AddNewDriver();
+                        fragment = new AddNotification();
                         break;
                     case 4:
-                        fragment = new Notification();
+                        fragment = new ListOrder();
                         break;
-                    case 5 :
+                    case 5:
                         fragment = new Category();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("admin", admin);
+                        fragment.setArguments(bundle);
                         break;
                     default:
                         fragment = new HomeAdmin();
@@ -72,8 +84,8 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
             }
         });
 
-        bottomNavigation.setCount(3,"10");
-        bottomNavigation.show(1,true);
+        //bottomNavigation.setCount(3, "10");
+        bottomNavigation.show(1, true);
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
@@ -84,7 +96,31 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
         bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
-                //Toast.makeText(getApplicationContext(), "You Reselected" +item.getId(),Toast.LENGTH_LONG).show();
+                Fragment fragment = null;
+                switch (item.getId()) {
+                    case 1:
+                        fragment = new HomeAdmin();
+                        break;
+                    case 2:
+                        fragment = new ListCustomer();
+                        break;
+                    case 3:
+                        fragment = new AddNotification();
+                        break;
+                    case 4:
+                        fragment = new ListOrder();
+                        break;
+                    case 5:
+                        fragment = new Category();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("admin", admin);
+                        fragment.setArguments(bundle);
+                        break;
+                    default:
+                        fragment = new HomeAdmin();
+                        break;
+                }
+                loadFragment(fragment);
             }
         });
 
@@ -103,14 +139,15 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
 
     public void gotoDetailFragment(Customer customer)
     {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        DetailInforCustomer detailInforCustomer = new DetailInforCustomer();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("object_customer", customer);
-        detailInforCustomer.setArguments(bundle);
-        fragmentTransaction.replace(R.id.frame_layout,detailInforCustomer);
-        fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
-        fragmentTransaction.commit();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            DetailInforCustomer detailInforCustomer = new DetailInforCustomer();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("object_customer", customer);
+            detailInforCustomer.setArguments(bundle);
+            fragmentTransaction.replace(R.id.frame_layout, detailInforCustomer);
+            fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+            fragmentTransaction.commit();
+
     }
     public void gotoListCustomer()
     {
@@ -157,6 +194,18 @@ public class MainAdminActivity extends AppCompatActivity implements IMainAdminAc
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void gotoDetailFragment(Order order) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailOrder detailOrder = new DetailOrder();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_order", order);
+        detailOrder.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frame_layout,detailOrder);
+        fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+        fragmentTransaction.commit();
+
+    }
 
 
 }
