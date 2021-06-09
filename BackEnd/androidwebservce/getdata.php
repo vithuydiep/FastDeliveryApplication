@@ -123,8 +123,8 @@
 			break;
 		case "editEndtimeOrder":
 			$id = $_POST['id'];
-			$endTime =$_POST['endTime'];
-			$query = "update bill set endTime = '$endTime' where id ='$id'";
+			$endTime = $_POST['endTime'];
+			$query = "update bill set endTime = NOW() where id ='$id'";
 			if(mysqli_query($connect,$query))
 			{
 				echo "Successful";

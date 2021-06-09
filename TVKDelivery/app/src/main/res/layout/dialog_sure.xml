@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp">
+    android:layout_height="150dp"
+    >
 
     <Button
         android:id="@+id/dialog_ok"
@@ -20,29 +21,16 @@
         app:layout_constraintStart_toEndOf="@+id/dialog_cancel"
         app:layout_constraintTop_toBottomOf="@+id/txtquestion" />
 
-    <ImageView
-        android:id="@+id/imageView22"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/questionmark" />
-
     <TextView
         android:id="@+id/txtquestion"
         android:layout_width="300dp"
         android:layout_height="67dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Are you sure you want to block this customer?"
+        android:text="Are you sure about that?"
         android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView22"
-        app:layout_constraintStart_toStartOf="@+id/imageView22"
-        app:layout_constraintTop_toBottomOf="@+id/imageView22" />
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="16dp"        />
 
     <Button
         android:id="@+id/dialog_cancel"

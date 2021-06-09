@@ -136,11 +136,15 @@ public class DetailDriver extends Fragment implements IDetailDriver{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         String name = edtName.getText().toString().trim();
         String gender = edtGender.getText().toString().trim();
         String phone = edtPhone.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String address = edtAddress.getText().toString().trim();
+
+        Profile.setCancelable(true);
+        Profile.show();
         Button Complete = Profile.findViewById(R.id.btnok);
         Complete.setOnClickListener(v -> {
             Profile.dismiss();
@@ -151,8 +155,7 @@ public class DetailDriver extends Fragment implements IDetailDriver{
 
         });
 
-        Profile.setCancelable(true);
-        Profile.show();
+
     }
 
 

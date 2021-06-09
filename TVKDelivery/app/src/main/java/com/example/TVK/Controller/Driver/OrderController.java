@@ -56,7 +56,7 @@ public class OrderController implements IOrderController {
     }
 
     @Override
-    public void updateEndtimeOrder(Context context, Date endtime, int id) {
-        iOrder.updateEndtimeOrder(context,endtime,id);
+    public void updateEndtimeOrder(Context context, int id) {
+        iOrder.updateEndtimeOrder(context,id);
     }
 }

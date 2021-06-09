@@ -341,7 +341,7 @@ public class Order implements IOrder, Serializable {
     }
 
     @Override
-    public void updateEndtimeOrder(Context context, Date endTime, int id) {
+    public void updateEndtimeOrder(Context context, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
             @Override
@@ -365,10 +365,8 @@ public class Order implements IOrder, Serializable {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                SimpleDateFormat sdf = new SimpleDateFormat();
                 params.put("type","editEndtimeOrder");
                 params.put("id",String.valueOf(id));
-                params.put("endTime", String.valueOf(endTime));
                 return params;
             }
         };

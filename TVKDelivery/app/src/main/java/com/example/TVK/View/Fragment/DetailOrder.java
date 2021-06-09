@@ -1,12 +1,18 @@
 package com.example.TVK.View.Fragment;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,7 +45,7 @@ public class DetailOrder extends Fragment {
     private String CheckState;
     private int id;
     private int CheckIddriver;
-    private Date ETime;
+    Dialog confirm;
 
 
     @Override
@@ -91,31 +97,17 @@ public class DetailOrder extends Fragment {
                 }
             }
         });
-        JSONObject logined_user = GlobalUser.getInstances().get("logined_user");
+
         if (CheckState.equals("DANGXULY")){
             btComplete.setText("Select");
             btComplete.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
-                CheckState = "DANGGIAO";
-                try {
-                    CheckIddriver = logined_user.getInt("ID");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                iOrderController = new OrderController();
-                iOrderController.updateStateOrder(getContext(), CheckState, id);
-                iOrderController.updateIddriverOrder(getContext(), CheckIddriver, id);
+                OpenDialog(Gravity.CENTER);
+
             });
         }
         else if (CheckState.equals("DANGGIAO")) {
             btComplete.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
-                CheckState = "DAGIAO";
-                ETime = new Date();
-                iOrderController = new OrderController();
-                iOrderController.updateEndtimeOrder(getContext(), ETime, id);
-                iOrderController.updateStateOrder(getContext(), CheckState, id);
-
+                OpenDialog(Gravity.CENTER);
             });
         }
         else {
@@ -131,5 +123,58 @@ public class DetailOrder extends Fragment {
         edtMass.setEnabled(false);
         edtPostage.setEnabled(false);
         edtDescription.setEnabled(false);
+    }
+    private void OpenDialog(int gravity) {
+
+        confirm = new Dialog(getContext());
+        confirm.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        confirm.setContentView(R.layout.dialog_sure);
+
+        Window window = confirm.getWindow();
+        if (window == null) {
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        Button btnOK = confirm.findViewById(R.id.dialog_ok);
+        Button btnCancel = confirm.findViewById(R.id.dialog_cancel);
+        JSONObject logined_user = GlobalUser.getInstances().get("logined_user");
+        btnOK.setOnClickListener(v -> {
+            if (CheckState.equals("DANGXULY")) {
+                CheckState = "DANGGIAO";
+                Processing pcs = new Processing();
+                try {
+                    CheckIddriver = logined_user.getInt("ID");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                iOrderController = new OrderController();
+                iOrderController.updateStateOrder(getContext(), CheckState, id);
+                iOrderController.updateIddriverOrder(getContext(), CheckIddriver, id);
+                confirm.dismiss();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, pcs).commit();
+                return;
+            }
+            else if (CheckState.equals("DANGGIAO")) {
+                CheckState = "DAGIAO";
+                OrderView orv = new OrderView();
+                iOrderController = new OrderController();
+                iOrderController.updateEndtimeOrder(getContext(), id);
+                iOrderController.updateStateOrder(getContext(), CheckState, id);
+                confirm.dismiss();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, orv).commit();
+                return;
+            }
+        });
+        btnCancel.setOnClickListener(v ->{
+            confirm.dismiss();
+        });
+
+        confirm.setCancelable(true);
+        confirm.show();
     }
 }
