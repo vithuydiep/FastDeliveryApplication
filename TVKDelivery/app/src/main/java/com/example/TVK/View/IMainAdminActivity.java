@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.TVK.Model.Order;
 import com.example.TVK.Model.User.Customer;
+import com.example.TVK.Model.User.Driver;
 
 public interface IMainAdminActivity {
     void loadFragment(Fragment fragment);

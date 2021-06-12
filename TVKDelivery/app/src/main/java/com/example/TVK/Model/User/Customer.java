@@ -18,8 +18,6 @@ import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.IGetAPICallback;
 import com.example.TVK.Ultis.IViewUltis;
 import com.example.TVK.View.CustomerAdapter;
-import com.example.TVK.View.Fragment.IEditCustomerInfor;
-import com.example.TVK.View.Adapter.CustomerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,6 +123,59 @@ public class Customer extends User implements ICustomer , Serializable {
         return instance;
     }
 
+
+    @Override
+    public void getAllDataCustomer(Context context, ArrayList<Customer> customerArrayList, com.example.TVK.View.Adapter.CustomerAdapter adapter) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONArray array = null;
+                        try {
+                            array = new JSONArray(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        for (int i=0 ; i< array.length(); i++)
+                        {
+                            try {
+                                JSONObject object = array.getJSONObject(i);
+                                customerArrayList.add(new Customer(
+                                        object.getInt("ID"),
+                                        object.getString("Name"),
+                                        object.getString("Gender"),
+                                        object.getString("Phone"),
+                                        object.getString("Address"),
+                                        object.getString("Email"),
+                                        object.getString("Username"),
+                                        object.getString("Password"),
+                                        object.getString("ActivationCode"),
+                                        object.getString("ResetPasswordCode"),
+                                        object.getString("State"),
+                                        object.getString("TypeUser")
+                                ));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("type","getDataCustomer");
+                return params;
+            }
+        };
+        requestQueue.add(jsonArrayRequest);
+    }
 
     public void addNewCustomter(Customer customer, Context context, IViewUltis iViewUltis, IGetAPICallback iGetAPICallback_argument) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -246,59 +297,6 @@ public class Customer extends User implements ICustomer , Serializable {
         requestQueue.add(stringRequest);
     }
 
-
-    @Override
-    public void getAllDataCustomer(Context context, ArrayList<Customer> customerArrayList, CustomerAdapter adapter) {
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            JSONArray array = null;
-                            try {
-                                array = new JSONArray(response);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            for (int i=0 ; i< array.length(); i++)
-                            {
-                                try {
-                                    JSONObject object = array.getJSONObject(i);
-                                    customerArrayList.add(new Customer(
-                                            object.getInt("ID"),
-                                            object.getString("Name"),
-                                            object.getString("Gender"),
-                                            object.getString("Phone"),
-                                            object.getString("Address"),
-                                            object.getString("Email"),
-                                            object.getString("Username"),
-                                            object.getString("Password"),
-                                            object.getString("ActivationCode"),
-                                            object.getString("ResetPasswordCode"),
-                                            object.getString("State"),
-                                            object.getString("TypeUser")
-                                    ));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                }
-            }){
-                @Nullable
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("type","getDataCustomer");
-                    return params;
-                }
-            };
-            requestQueue.add(jsonArrayRequest);
-    }
 
     public void updateCustomer(Context context, IEditInforCustomerController iEditInforCustomerController, Customer customer)
     {

@@ -17,7 +17,7 @@ public class FeedbackAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private List<Feedback> feedbackList;
-    private FeedbackAdapter.IClickItemListener iClickItemListener;
+    private IClickItemListener iClickItemListener;
 
     public FeedbackAdapter(Context context, int layout, List<Feedback> feedbackList, IClickItemListener iClickItemListener) {
         this.context = context;

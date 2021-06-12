@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Notification implements  INotification{
+public class Notification{
     private int id;
     private String title;
     private String content;
@@ -60,7 +60,6 @@ public class Notification implements  INotification{
         this.content = content;
     }
 
-    @Override
     public void addNewNotify(EditText title, EditText content, Context context) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
@@ -97,4 +96,5 @@ public class Notification implements  INotification{
 
         requestQueue.add(jsonArrayRequest);
     }
+
 }

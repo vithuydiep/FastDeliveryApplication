@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -387,6 +388,51 @@ public class Driver extends User implements IDriver, Serializable {
             }
         };
         requestQueue.add(stringRequest);
+
+    }
+
+    @Override
+    public void checkExistUpdate(Context context, CallBack callBacka, EditText nameupdate, EditText editText, String id, String type) {
+
+    }
+
+    @Override
+    public void updatePhone(Context context, String id, String phone) {
+
+    }
+
+    @Override
+    public void updateEmail(Context context, String id, EditText nameupdate, String email) {
+
+    }
+
+    @Override
+    public void updateAddress(Context context, String id, EditText nameupdate, String address) {
+
+    }
+
+    @Override
+    public void updateLicense(Context context, String id, String license) {
+
+    }
+
+    @Override
+    public void updateIDNumber(Context context, String id, String idnum) {
+
+    }
+
+    @Override
+    public void checkExistUpdateID(Context context, CallBack callBacka, EditText nameupdate, EditText editText, String id, String type) {
+
+    }
+
+    @Override
+    public void checkExistUpdateLicense(Context context, CallBack callBacka, EditText nameupdate, EditText editText, String id, String type) {
+
+    }
+
+    @Override
+    public void findCustomerbyID(Context context, CallBack callBack, String id, Driver driver) {
 
     }
 

@@ -7,7 +7,6 @@ import com.example.TVK.Model.User.Driver;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 
 public class GlobalUser {
     private static Customer globalCustomer;

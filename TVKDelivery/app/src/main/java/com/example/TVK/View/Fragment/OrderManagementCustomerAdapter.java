@@ -1,34 +1,24 @@
 package com.example.TVK.View.Fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.TVK.Model.Order;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.TVK.Controller.IOrderMByStatusController;
-import com.example.TVK.Model.Order;
 import com.example.TVK.R;
-import com.example.TVK.Ultis.GlobalUser;
 import com.example.TVK.Viewholder.OrderMByStatusViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class OrderManagementCustomerAdapter extends RecyclerView.Adapter<OrderMByStatusViewHolder>  {
     View view;
@@ -97,7 +87,7 @@ public class OrderManagementCustomerAdapter extends RecyclerView.Adapter<OrderMB
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.background_dialog);
         dialog.setCancelable(false);
-        dialog.getWindow().getAttributes().windowAnimations =R.style.animation;
+        //dialog.getWindow().getAttributes().windowAnimations =R.style.animation;
         textView = dialog.findViewById(R.id.txtquestion);
         ok = dialog.findViewById(R.id.dialog_ok);
         cancel = dialog.findViewById(R.id.dialog_cancel);

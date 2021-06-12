@@ -7,16 +7,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.TVK.Controller.ICreateEditOrderCustomerController;
+import com.example.TVK.Controller.IOrderMByStatusController;
 import com.example.TVK.Ultis.CallBack;
-import com.example.TVK.View.Fragment.ListOrder;
-import com.example.TVK.View.IMainAdminActivity;
-import com.example.TVK.View.OrderAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,95 +28,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Order implements IOrder, Serializable {
-    private int id;
-    private int iduser;
-    private String pickupAddress;
-    private String receiveAddress;
-    private double mass;
-    private String receiveName;
-    private String receivePhone;
-    private String description;
-    private double postage;
-    private double total;
-    private String state;
-    private Date startTime;
-    private Date endTime;
-    private int iddriver;
-
-    String baseUrl = "http://192.168.1.7/androidwebservce/";
-    public Order() {
-    }
-
-
-    public Order(int id, int iduser, String pickupAddress, String receiveAddress, double mass, String receiveName, String receivePhone, String description, double postage, double total, String state, Date startTime, Date endTime) {
-        this.id = id;
-        this.iduser = iduser;
-        this.pickupAddress = pickupAddress;
-        this.receiveAddress = receiveAddress;
-        this.mass = mass;
-        this.receiveName = receiveName;
-        this.receivePhone = receivePhone;
-        this.description = description;
-        this.postage = postage;
-        this.total = total;
-        this.state = state;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
-
-
-    public Order(int id, int iduser, String pickupAddress, String receiveAddress, double mass, String receiveName, String receivePhone, String description, double postage, double total, String state, Date startTime, Date endTime, int iddriver) {
-        this.id = id;
-        this.iduser = iduser;
-        this.pickupAddress = pickupAddress;
-        this.receiveAddress = receiveAddress;
-        this.mass = mass;
-        this.receiveName = receiveName;
-        this.receivePhone = receivePhone;
-        this.description = description;
-        this.postage = postage;
-        this.total = total;
-        this.state = state;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.iddriver = iddriver;
-    }
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.GlobalUser;
 import com.example.TVK.View.Adapter.OrderAdapter;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.example.TVK.View.IMainAdminActivity;
 
 public class Order implements IOrder, Serializable {
-
     private int idOrder;
     private int idUser;
     private String pickupAddress;
@@ -132,69 +51,121 @@ public class Order implements IOrder, Serializable {
     Date endTime;
     int idDriver;
 
-    CallBack callBack;
-    String baseUrl = "http://192.168.1.71/androidwebservce/";
-    JSONObject logined_user = GlobalUser.getInstances().get("logined_user");
-
-    public Order(int id, int idUser, String pickupaddress, String deliveryaddress, double mass, String receiverName, String receiverphone, String description, double postage, double total, String state, Date starttime, Object endTime, int idDriver) {
-    }
-
     public int getIdOrder() {
         return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public int getIdUser() {
         return idUser;
     }
 
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
     public String getPickupAddress() {
         return pickupAddress;
+    }
+
+    public void setPickupAddress(String pickupAddress) {
+        this.pickupAddress = pickupAddress;
     }
 
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
 
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
     public double getMass() {
         return mass;
+    }
+
+    public void setMass(double mass) {
+        this.mass = mass;
     }
 
     public String getReceiverName() {
         return receiverName;
     }
 
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
     public String getReceiverPhone() {
         return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public double getPostage() {
         return postage;
+    }
+
+    public void setPostage(double postage) {
+        this.postage = postage;
     }
 
     public double getTotal() {
         return total;
     }
 
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     public String getState() {
         return state;
     }
 
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public Date getStartTime() {
         return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public Date getEndTime() {
         return endTime;
     }
 
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
     public int getIdDriver() {
         return idDriver;
     }
+
+    public void setIdDriver(int idDriver) {
+        this.idDriver = idDriver;
+    }
+
+    CallBack callBack;
+    String baseUrl = "http://192.168.1.71/androidwebservce/";
+    //JSONObject logined_user = GlobalUser.getInstances().get("logined_user");
 
     public Order(){}
 
@@ -216,7 +187,7 @@ public class Order implements IOrder, Serializable {
         this.idDriver=idDriver;
     }
 
-    public void getAllDataOrder(Context context, ArrayList<Order> orderArrayList, OrderAdapter adapter, String state) {
+    /*public void getAllDataOrder(Context context, ArrayList<Order> orderArrayList, OrderAdapter adapter, String state) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl + "getdata.php",
                 new Response.Listener<String>() {
@@ -355,8 +326,7 @@ public class Order implements IOrder, Serializable {
             }
         };
         requestQueue.add(jsonArrayRequest);
-    }
-
+    }*/
 
     public void updateStateOrder(Context context, String state, int id) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -458,179 +428,6 @@ public class Order implements IOrder, Serializable {
             }
         };
         requestQueue.add(stringRequest);
-    }
-
-    public int getIddriver() {
-        return iddriver;
-    }
-
-    public void setIddriver(int iddriver) {
-        this.iddriver = iddriver;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getIduser() {
-        return iduser;
-    }
-
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
-    }
-
-    public String getPickupAddress() {
-        return pickupAddress;
-    }
-
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
-    }
-
-    public String getReceiveAddress() {
-        return receiveAddress;
-    }
-
-    public void setReceiveAddress(String receiveAddress) {
-        this.receiveAddress = receiveAddress;
-    }
-
-    public double getMass() {
-        return mass;
-    }
-
-    public void setMass(double mass) {
-        this.mass = mass;
-    }
-
-    public String getReceiveName() {
-        return receiveName;
-    }
-
-    public void setReceiveName(String receiveName) {
-        this.receiveName = receiveName;
-    }
-
-    public String getReceivePhone() {
-        return receivePhone;
-    }
-
-    public void setReceivePhone(String receivePhone) {
-        this.receivePhone = receivePhone;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPostage() {
-        return postage;
-    }
-
-    public void setPostage(double postage) {
-        this.postage = postage;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-
-
-    public int getIdOrder() {
-        return idOrder;
-    }
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public String getPickupAddress() {
-        return pickupAddress;
-    }
-
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public double getMass() {
-        return mass;
-    }
-
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public String getReceiverPhone() {
-        return receiverPhone;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-
-    public String getState() {
-        return state;
-    }
-
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public int getIdDriver() {
-        return idDriver;
-    }
-
-    public Order(int id, int idUser, String pickupaddress, String deliveryaddress, double mass, String receiveName, String receiverphone, String description, double postage, double total, String state, Date starttime, Date endtime, int idDriver){}
-
-    public Order(int idOrder, int idUser, String pickupAddress, String deliveryAddress, double mass, String receiverName, String receiverPhone, String decscription, int postage , int total, String state, Date startTime,  Date endTime, int idDriver)
-    {
-        this.idOrder=idOrder;
-        this.idUser=idUser;
-        this.pickupAddress=pickupAddress;
-        this.deliveryAddress=deliveryAddress;
-        this.mass=mass;
-        this.receiverName=receiverName;
-        this.receiverPhone=receiverPhone;
-        this.description=decscription;
-        this.postage=postage;
-        this.total=total;
-        this.state=state;
-        this.startTime=startTime;
-        this.endTime=endTime;
-        this.idDriver=idDriver;
     }
 
     public void createOrder(Context context, Order order, ICreateEditOrderCustomerController iCreateEditOrderCustomerController)
@@ -837,17 +634,6 @@ public class Order implements IOrder, Serializable {
             }
         };
         requestQueue.add(jsonArrayRequest);
-    }
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     @Override

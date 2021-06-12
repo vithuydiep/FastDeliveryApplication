@@ -17,7 +17,7 @@ public class ContactAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private List<Contact> contactList;
-    private ContactAdapter.IClickItemListener iClickItemListener;
+    private IClickItemListener iClickItemListener;
 
     public ContactAdapter(Context context, int layout, List<Contact> contactList, ContactAdapter.IClickItemListener iClickItemListener) {
         this.context = context;
