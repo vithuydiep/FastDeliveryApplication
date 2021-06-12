@@ -15,7 +15,7 @@ import com.example.TVK.Controller.IManageCustomerController;
 import com.example.TVK.Controller.ManageCustomerController;
 import com.example.TVK.Model.User.ICustomer;
 import com.example.TVK.R;
-import com.example.TVK.View.CustomerAdapter;
+import com.example.TVK.View.Adapter.CustomerAdapter;
 import com.example.TVK.View.MainAdminActivity;
 
 /**
@@ -29,7 +29,6 @@ public class ListCustomer extends Fragment implements IListCustomer{
     IManageCustomerController iManageCustomerController;
     ImageButton btnimgplus;
     MainAdminActivity mainAdminActivity;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,7 +78,7 @@ public class ListCustomer extends Fragment implements IListCustomer{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_customer, container, false);
-        //mainAdminActivity = (MainAdminActivity) getActivity();
+        mainAdminActivity = (MainAdminActivity) getActivity();
         btnimgplus = (ImageButton) view.findViewById(R.id.imgbtnaddcus);
         btnimgplus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +87,6 @@ public class ListCustomer extends Fragment implements IListCustomer{
                 changeFragment(fragment);
             }
         });
-
-        listCustomer = (ListView) view.findViewById(R.id.listdriver);
         setAdaper(view);
         return view;
     }
@@ -99,7 +96,7 @@ public class ListCustomer extends Fragment implements IListCustomer{
     public void setAdaper(View view) {
         iManageCustomerController = new ManageCustomerController(this);
         CustomerAdapter adapter = iManageCustomerController.loadadapter(getContext());
-        listCustomer = (ListView) view.findViewById(R.id.listdriver);
+        listCustomer = (ListView) view.findViewById(R.id.listcustomer);
         listCustomer.setAdapter(adapter);
 
     }

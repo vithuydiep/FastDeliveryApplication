@@ -1,78 +1,105 @@
 package com.example.TVK.View;
 
+
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.TVK.R;
-import com.example.TVK.View.Fragment.ViewPagerAdapterDriver;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.TVK.View.Fragment.CategoryDriver;
+import com.example.TVK.View.Fragment.DetailInforCustomer;
+import com.example.TVK.View.Fragment.DetailOrder;
+import com.example.TVK.View.Fragment.HomeDriver;
+import com.example.TVK.View.Fragment.Notification;
+import com.example.TVK.View.Fragment.OrderView;
+import com.example.TVK.View.Fragment.DetailDriver;
 
-public class MainDriverActivity extends AppCompatActivity{
-    private ViewPager viewPager;
-    private BottomNavigationView bottomNavigationView;
-    Button btndangxuat;
+public class MainDriverActivity extends AppCompatActivity implements IMainDriverActivity {
+    MeowBottomNavigation bottomNavigation;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_customer);
+        setContentView(R.layout.activity_main_driver);
+        bottomNavigation = (MeowBottomNavigation) findViewById(R.id.bottomNavigation);
 
-        viewPager = findViewById(R.id.ViewPager);
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
-        ViewPagerAdapterDriver adapter= new ViewPagerAdapterDriver(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(adapter);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_order));
+        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_notifications));
+        bottomNavigation.add(new MeowBottomNavigation.Model(5, R.drawable.ic_menu));
+        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_home).setChecked(true);
-                        break;
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
                     case 1:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_thongbao).setChecked(true);
+                        fragment = new HomeDriver();
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.menu_danhmuc).setChecked(true);
+                        fragment = new DetailDriver();
+                        break;
+                    case 3:
+                        fragment = new Notification();
+                        break;
+                    case 4:
+                        fragment = new OrderView();
+                        break;
+                    case 5 :
+                        fragment = new CategoryDriver();
+                        break;
+                    default:
+                        fragment = new HomeDriver();
                         break;
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+                loadFragment(fragment);
             }
         });
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        bottomNavigation.setCount(3,"10");
+        bottomNavigation.show(1,true);
+
+        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_home:
-                        viewPager.setCurrentItem(0);
-                        break;
-                    case R.id.menu_thongbao:
-                        viewPager.setCurrentItem(1);
-                        break;
-                    case R.id.menu_danhmuc:
-                        viewPager.setCurrentItem(2);
-                        break;
-                }
-                return true;
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                //Toast.makeText(getApplicationContext(),"YouClicked"+ item.getId(), Toast.LENGTH_LONG).show();
             }
         });
+        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                //Toast.makeText(getApplicationContext(), "You Reselected" +item.getId(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
     }
-    private void anhxa()
-    {
-        btndangxuat = findViewById(R.id.btndangxuat);
+
+
+    @Override
+    public void loadFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
+
+    @Override
+    public void gotoDetailFragment(com.example.TVK.Model.Order order) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailOrder detailOrder = new DetailOrder();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_order", order);
+        detailOrder.setArguments(bundle);
+        fragmentTransaction.replace(R.id.frame_layout,detailOrder);
+        fragmentTransaction.addToBackStack(DetailInforCustomer.TAG);
+        fragmentTransaction.commit();
+    }
+
+
+
 }

@@ -19,7 +19,7 @@ public class ViewPagerAdapterCustomer extends FragmentStatePagerAdapter {
             case 1:
                 return new Notification();
             case 2:
-                return new Category();
+                return new CategoryAdmin();
             default:
                 return new HomeCustomer();
         }

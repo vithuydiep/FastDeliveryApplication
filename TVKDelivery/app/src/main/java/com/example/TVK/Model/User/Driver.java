@@ -16,14 +16,15 @@ import com.android.volley.toolbox.Volley;
 import com.example.TVK.Model.IOrder;
 import com.example.TVK.Ultis.CallBack;
 import com.example.TVK.Ultis.IGetAPICallback;
-import com.example.TVK.View.DriverAdapter;
+import com.example.TVK.View.Adapter.DriverAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class Driver extends User implements IDriver, Serializable {
     private String gplx;
     private String idnumber;
     CallBack callBack;
+
 
     public Driver(String fullName, String gender, String phone, String address, String email, String gplx, String idnumber) {
         super(fullName, gender, phone, address, email);
@@ -80,7 +82,7 @@ public class Driver extends User implements IDriver, Serializable {
     private IGetAPICallback iGetAPICallback;
     private IOrder iOrder;
 
-    String baseUrl = "http://192.168.1.7/androidwebservce/";
+    String baseUrl = "http://192.168.1.6/androidwebservce/";
 
     public Driver()
     {
@@ -388,333 +390,6 @@ public class Driver extends User implements IDriver, Serializable {
 
     }
 
-    @Override
-    public void checkExistUpdate(Context context, CallBack callBacka,EditText nameupdate, EditText editText, String id, String type) {
-        callBack = callBacka;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist Phone"))
-                {
-                    editText.requestFocus();
-                    editText.setError("Number phone is exist");
-                    callBack.onGetDataSucess(null,null,"Update Phone Exist",context,null);
-
-                }else if (response.equals("No Exist Phone")) {
-
-                    Driver driver = new Driver(Integer.parseInt(id) ,getText(editText));
-                    nameupdate.setText(editText.getText().toString().trim());
-                    callBack.onGetDataSucess(null, null, "Update phone No Exist", context, driver);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","phone");
-                params.put("phone",getText(editText));
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void updatePhone(Context context, String id, String phone) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editPhone");
-                params.put("phone",phone);
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void updateEmail(Context context, String id,EditText nameupdate, String email) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    nameupdate.setText(email);
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editEmail");
-                params.put("email",email);
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void updateAddress(Context context, String id, EditText nameupdate,String address) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-                    nameupdate.setText(address);
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editAddress");
-                params.put("address",address);
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void updateLicense(Context context, String id, String license) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editLicense");
-                params.put("license",license);
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void updateIDNumber(Context context, String id, String idnum) {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(response.equals("Successful"))
-                {
-                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
-
-                }else if(response.equals("Something went wrong"))
-                {
-                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","editIDNumber");
-                params.put("idnumber",idnum);
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void checkExistUpdateID(Context context, CallBack callBacka,EditText nameupdate, EditText editText, String id, String type) {
-        callBack = callBacka;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist Idnumber"))
-                {
-                    editText.requestFocus();
-                    editText.setError("ID Number is exist");
-                    callBack.onGetDataSucess(null,null,"Update Phone Exist",context,null);
-
-                }else if (response.equals("No Exist Idnumber")) {
-                    nameupdate.setText(editText.getText().toString());
-                    Driver driver = new Driver(Integer.parseInt(id),null,getText(editText));
-                    callBack.onGetDataSucess(null, null, "Update ID No Exist", context, driver);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","idnumber");
-                params.put("idnumber",getText(editText));
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void checkExistUpdateLicense(Context context, CallBack callBacka,EditText nameupdate, EditText editText, String id, String type) {
-        callBack = callBacka;
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (response.equals("Exist License"))
-                {
-                    editText.requestFocus();
-                    editText.setError("ID Number is exist");
-                    callBack.onGetDataSucess(null,null,"Update Phone Exist",context,null);
-
-                }else if (response.equals("No Exist License")) {
-                    nameupdate.setText(editText.getText().toString());
-                    Driver driver = new Driver(Integer.parseInt(id),getText(editText),null);
-                    callBack.onGetDataSucess(null, null, "Update License No Exist", context, driver);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callBack.onResponseError(error.getMessage(), null);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","checkExist");
-                params.put("typecheck","driverlicense");
-                params.put("driverlicense",getText(editText));
-                return params;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
-    public void findCustomerbyID(Context context, CallBack callBack, String id,Driver driver)
-    {
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, baseUrl+"getdata.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.equals("Error"))
-                        {
-                            callBack.onGetDataSucess(null,null,response,context,driver);
-                            Toast.makeText(context, "Looking for a driver", Toast.LENGTH_LONG).show();
-                        }else {
-                            try {
-                                JSONObject object = new JSONObject(response);
-                                callBack.onGetDataSucess(object,null,"driver",context,driver);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }}, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) { }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type","findUserbyID");
-                params.put("id",id);
-                return params;
-            }
-        };
-        requestQueue.add(jsonArrayRequest);
-    }
-
     public String getText(EditText name)
     {
         return name.getText().toString().trim();
@@ -826,4 +501,43 @@ public class Driver extends User implements IDriver, Serializable {
         }
 
     }
+    @Override
+    public void updateInfoDriver(Context context, String name, String gender, String phone, String email, String address) {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl + "getdata.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.equals("Successful"))
+                {
+                    Toast.makeText(context,"Successful",Toast.LENGTH_LONG).show();
+
+                }else if(response.equals("Something went wrong"))
+                {
+                    Toast.makeText(context,"Error",Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("type","editInfoDriver");
+                params.put("name", name);
+                params.put("gender", gender);
+                params.put("phone", phone);
+                params.put("email", email);
+                params.put("address", address);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+
+
 }

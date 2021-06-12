@@ -9,7 +9,8 @@
 			$data = mysqli_query($connect, $query);
 			$arrayUser = array();
 			while ($row = mysqli_fetch_assoc($data)) {
-			array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser'],$row['isReceiveNotification']));}
+				array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']));
+			}
 			echo json_encode($arrayUser);
 			break;
 		case "login":
@@ -58,7 +59,8 @@
 			$data = mysqli_query($connect, $query);
 			$arrayUser = array();
 			while ($row = mysqli_fetch_assoc($data)) {
-			array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser'],$row['isReceiveNotification']));}
+				array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']));
+			}
 			echo json_encode($arrayUser);
 			break;
 		case "newaccountcustomer":
@@ -115,12 +117,61 @@
 				echo "Something went wrong";
 			}
 			break;
+		case "editStateOrder":
+			$id = $_POST['id'];
+			$state =$_POST['state'];
+			$query = "update bill set state = '$state' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editIddriverOrder":
+			$id = $_POST['id'];
+			$iddriver =$_POST['iddriver'];
+			$query = "update bill set iddriver = '$iddriver' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editEndtimeOrder":
+			$id = $_POST['id'];
+			$endTime =$_POST['endTime'];
+			$query = "update bill set endTime = '$endTime' where id ='$id'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+		case "editInfoDriver":
+			$name =$_POST['name'];
+			$gender =$_POST['gender'];
+			$phone =$_POST['phone'];
+			$address =$_POST['address'];
+			$email =$_POST['email'];
+			$query = "update user set name = '$name', gender = '$gender', phone = '$phone', address = '$address', email = '$email' where phone ='$phone'";
+			if(mysqli_query($connect,$query))
+			{
+				echo "Successful";
+			}else{
+				echo "Something went wrong";
+			}
+			break;
+
 		case "getDataDriver":
 			$query = "SELECT * FROM user where typeofuser = 'DRIVER' ";
 			$data = mysqli_query($connect, $query);
 			$arrayUser = array();
 			while ($row = mysqli_fetch_assoc($data)) {
-			array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']));}
+				array_push($arrayUser, new User($row['id'], $row['name'], $row['gender'], $row['phone'], $row['address'], $row['email'], $row['idnumber'], $row['username'], $row['password'], $row['activationcode'], $row['resetpasswordcode'], $row['state'], $row['driverlicensenumber'], $row['typeofuser']));
+			}
 			echo json_encode($arrayUser);
 			break;
 		case "addnewdriver":
@@ -183,7 +234,7 @@
 						break;
 				}	
 			break;
-		case 'getDataContact':
+		case "getDataContact":
 			$query = "SELECT * FROM contact";
 			$data = mysqli_query($connect, $query);
 			$arrayContact = array();
@@ -192,7 +243,7 @@
 			}
 			echo json_encode($arrayContact);
 			break;
-		case 'getDataFeedback':
+		case "getDataFeedback":
 			$query = "SELECT * FROM feedback";
 			$data = mysqli_query($connect, $query);
 			$arrayfeedback = array();
@@ -393,10 +444,40 @@
 							echo "Something went wrong";
 						}
 						break;
+
+		case "getDataOrder1":
+			$query = "SELECT * FROM bill where state = 'DANGXULY'";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+				array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['startTime'],$row['endTime'],$row['iddriver']));
+			}
+			echo json_encode($arrayOrder);
+			break;
+		case "getDataOrder2":
+			$iddriver = $_POST['iddriver'];
+			$query = "SELECT * FROM bill where state = 'DANGGIAO' and iddriver = '$iddriver'";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+				array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['startTime'],$row['endTime'],$row['iddriver']));
+			}
+			echo json_encode($arrayOrder);
+			break;
+		case "getDataOrder3":
+			$iddriver = $_POST['iddriver'];
+			$query = "SELECT * FROM bill where state = 'DAGIAO' and iddriver = '$iddriver'";
+			$data = mysqli_query($connect, $query);
+			$arrayOrder = array();
+			while ($row = mysqli_fetch_assoc($data)) {
+				array_push($arrayOrder, new Order($row['id'], $row['iduser'], $row['pickupaddress'], $row['deliveryaddress'], $row['mass'], $row['receivername'], $row['receiverphone'], $row['description'], $row['postage'], $row['total'],  $row['state'],$row['startTime'],$row['endTime'],$row['iddriver']));
+			}
+			echo json_encode($arrayOrder);
+			break;
+
+
 		default:
 			echo "Lỗi";
 			break;
 	}
-
-
 ?>

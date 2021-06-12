@@ -1,12 +1,6 @@
 package com.example.TVK.Model.User;
 
 import android.content.Context;
-import android.widget.EditText;
-
-import com.example.TVK.Ultis.CallBack;
-import com.example.TVK.View.DriverAdapter;
-
-import java.util.ArrayList;
 
 public interface IDriver {
     void getAllDataDriver(Context context, ArrayList<Driver> driverArrayList, DriverAdapter adapter);
@@ -24,4 +18,5 @@ public interface IDriver {
     void checkExistUpdateID(Context context,CallBack callBacka, EditText nameupdate,EditText editText,String id,String type);
     void checkExistUpdateLicense(Context context,CallBack callBacka,EditText nameupdate, EditText editText,String id,String type);
     void findCustomerbyID(Context context, CallBack callBack, String id,Driver driver);
+    void updateInfoDriver(Context context, String name, String gender, String phone, String email, String address);
 }

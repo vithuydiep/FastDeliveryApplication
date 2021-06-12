@@ -19,7 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +37,21 @@ public class User implements IUser, Serializable {
     private String typeOfUser;
     private int isReceiveNotification;
 
+    private IGetAPICallback iGetAPICallback;
+    private IOrder iOrder;
+
+    String baseUrl = "http://192.168.1.71/androidwebservce/";
+
+    public User(){
+
+    }
+
+    public User(String fullName, String gender, String phone, String address, String email) {
+        this.fullName = fullName;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
     private static User instance;
 
     private IGetAPICallback iGetAPICallback;

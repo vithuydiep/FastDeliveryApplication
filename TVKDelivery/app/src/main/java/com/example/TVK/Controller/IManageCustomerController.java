@@ -3,14 +3,11 @@ package com.example.TVK.Controller;
 import android.content.Context;
 import android.widget.EditText;
 
-import com.example.TVK.View.CustomerAdapter;
+import com.example.TVK.View.Adapter.CustomerAdapter;
 
 public interface IManageCustomerController {
     CustomerAdapter loadadapter(Context context);
-    void OnCheckData(EditText txtcusname_add, EditText txtcusphone_add, EditText txtcusemail_add, Context context);
-    void OnAddNewCustomer(String txtcusname_add, String txtcusphone_add, String txtcusemail_add,Context context);
-    boolean isCheck();
-    void updateStateCustomer(Context context, String phone, String state);
-
+    void OnCheckDataAndSendOTP(EditText txtUsername, EditText txtPassword, EditText txtConfirmPassword, EditText txtPhone, Context context);
+    void OnAddNewCustomer(EditText txtUsername, EditText txtPassword, EditText txtPhone,String otp,Context context);
 
 }

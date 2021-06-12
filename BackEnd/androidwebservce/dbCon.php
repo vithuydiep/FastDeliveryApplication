@@ -45,9 +45,32 @@ class Order
 	}
 }
 /**
- * 
+ *
  */
-class Contact 
+class Order
+{
+	function __construct($id,$iduser,$pickupaddress,$deliveryaddress,$mass,$receivername,$receiverphone,$description,$postage,$total,$state,$startTime, $endTime,$iddriver)
+	{
+		$this->ID = $id;
+		$this->IDUser = $iduser;
+		$this->PickupAddress = $pickupaddress;
+		$this->DeliveryAddress = $deliveryaddress;
+		$this->Mass = $mass;
+		$this->ReceiverName= $receivername;
+		$this->ReceiverPhone = $receiverphone;
+		$this->Description= $description;
+		$this->Postage = $postage;
+		$this->Total =$total;
+		$this->State= $state;
+		$this->StartTime= $startTime;
+		$this->EndTime = $endTime;
+		$this->IDDriver=$iddriver;
+	}
+}
+/**
+ *
+ */
+class Contact
 {
 	
 	function __construct($id,$iduser,$title,$message)
@@ -75,11 +98,11 @@ class Feedback
 }
 
 /**
- * 
+ *
  */
 class Order
 {
-	
+
 	function __construct($id,$iduser,$pickupaddress,$deliveryaddress,$mass,$receivename,$receiverphone,$description,$postage,$total,$state,$idpayment,$startTime, $endTime,$iddriver)
 	{
 		$this->ID = $id;

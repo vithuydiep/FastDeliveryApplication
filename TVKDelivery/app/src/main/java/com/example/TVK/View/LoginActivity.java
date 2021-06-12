@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     SharedPreferences sharedPreferences;
     String message=null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,6 +202,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         {
             rememberMe(cbGhiNhoDangNhap.isChecked(),type_of_user,jsonObject);
             Intent intent;
+            GlobalUser.getInstances().put("logined_user",jsonObject);
             switch (type_of_user)
             {
                 case "ADMIN":
@@ -281,9 +283,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     public void close_dialogLoading() {
             dialog_API.dismiss();
     }
-
-
-
 
 
 }

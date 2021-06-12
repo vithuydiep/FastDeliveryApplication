@@ -19,6 +19,7 @@ import com.example.TVK.Ultis.IGetAPICallback;
 import com.example.TVK.Ultis.IViewUltis;
 import com.example.TVK.View.CustomerAdapter;
 import com.example.TVK.View.Fragment.IEditCustomerInfor;
+import com.example.TVK.View.Adapter.CustomerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,16 +124,18 @@ public class Customer extends User implements ICustomer , Serializable {
         }
         return instance;
     }
+
+
     public void addNewCustomter(Customer customer, Context context, IViewUltis iViewUltis, IGetAPICallback iGetAPICallback_argument) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         iGetAPICallback = iGetAPICallback_argument;
-        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, super.baseUrl + "getdata.php",
+        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, super.baseUrl+"getdata.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             //JSONArray jsonArray = new JSONArray(response);
-                            iGetAPICallback.onGetDataSucess(null, null, response, iViewUltis, "addNewCustomer");
+                            iGetAPICallback.onGetDataSucess(null,null,response,iViewUltis,"addNewCustomer");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -140,55 +143,18 @@ public class Customer extends User implements ICustomer , Serializable {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                iGetAPICallback.onResponseError(error.getMessage(), iViewUltis);
-            }
-        }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("type", "register");
-                params.put("username", customer.getUserName().trim());
-                params.put("password", customer.getPassWord().trim());
-                params.put("phone", customer.getPhone().trim());
-                params.put("activationcode", customer.getActivationCode().trim());
-                params.put("state", customer.getStatus().trim());
-                params.put("typeofuser", customer.getTypeOfUser().trim());
-                return params;
-            }
-        };
-        requestQueue.add(jsonArrayRequest);
-    }
-
-
-   public void addNewCustomter(Customer customer, Context context ){
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        StringRequest jsonArrayRequest= new StringRequest(Request.Method.POST, super.baseUrl+"getdata.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("Registration Successfully"))
-                        {
-                            Toast.makeText(context, "Registration Successfully",Toast.LENGTH_LONG).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(),Toast.LENGTH_LONG).show();
-
+                iGetAPICallback.onResponseError(error.getMessage(),iViewUltis);
             }
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("type","newaccountcustomer");
+                params.put("type","register");
                 params.put("username",customer.getUserName().trim());
-                params.put("name",customer.getFullName().trim());
                 params.put("password",customer.getPassWord().trim());
                 params.put("phone",customer.getPhone().trim());
+                params.put("activationcode",customer.getActivationCode().trim());
                 params.put("state",customer.getStatus().trim());
                 params.put("typeofuser",customer.getTypeOfUser().trim());
                 return params;
@@ -308,8 +274,8 @@ public class Customer extends User implements ICustomer , Serializable {
                                             object.getString("Username"),
                                             object.getString("Password"),
                                             object.getString("ActivationCode"),
-                                            object.getString("State"),
                                             object.getString("ResetPasswordCode"),
+                                            object.getString("State"),
                                             object.getString("TypeUser")
                                     ));
                                 } catch (JSONException e) {
