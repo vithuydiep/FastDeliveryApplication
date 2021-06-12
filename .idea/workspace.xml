@@ -20,38 +20,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c8d49fd-b273-4beb-8b96-6772a6114ff7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageNotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageOrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageNotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageOrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/INotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/AddNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IAddNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IListOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IMainOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/MainOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/OrderAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/back.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/ic_baseline_delete_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/iccoverhome.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/iconhome.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/notification.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/dialog_edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_add_notification.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_detail_order.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_order.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_main_order.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_custom_order.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/Driver/IInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/Driver/IOrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/Driver/InfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/Driver/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Adapter/CustomerAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Adapter/DriverAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Adapter/OrderAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/CategoryAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/CategoryDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/Delevered.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/Delevering.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IDelivered.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IDelivering.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IDetailDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IProcessing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/OrderView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/Processing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ViewPagerAdapterOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IClickItemListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IMainDriverActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable-xxxhdpi/chart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable-xxxhdpi/contact.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable-xxxhdpi/neworder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable-xxxhdpi/received.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/orderitem.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/dialog_profile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_category_admin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_category_driver.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_d_delivered.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_d_delivering.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_d_detail_driver.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_d_detail_order.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_d_processing.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_order.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/androidwebservce/dbCon.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/androidwebservce/dbCon.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/androidwebservce/getdata.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/androidwebservce/getdata.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageDriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageDriverController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageContactController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageDriverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageDriverController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageFeedbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageFeedbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/delivery.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/delivery.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ILoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ILoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/IManageCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/ManageCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Controller/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Feedback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/IOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/IOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/Order.java" afterDir="false" />
@@ -60,28 +78,42 @@
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/ICustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/ICustomer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/IDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/IDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Model/User/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/ContactAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/ContactAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/FeedbackAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/FeedbackAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/AddNewDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/AddNewDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Ultis/GlobalUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/Ultis/GlobalUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/AddNewCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/AddNewCustomer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailInforCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailInforCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/DetailOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/HomeAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/HomeAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListContact.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListContact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListFeedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListFeedback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/HomeDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/HomeDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IAddNewCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/IAddNewCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ListCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ViewPagerAdapterCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/Fragment/ViewPagerAdapterCustomer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/ILoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/ILoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IMainAdminActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IMainAdminActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IMainCustomerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/IMainCustomerActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainAdminActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainAdminActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/ic_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/ic_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/drawable/pakage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_category.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_detail_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_detail_driver.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainCustomerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainCustomerActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainDriverActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/MainDriverActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/java/com/example/TVK/View/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_forgot_pass.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_forgot_pass.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_main_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_main_driver.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_add_new_customer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_add_new_customer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_add_new_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_add_new_driver.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_detail_infor_customer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_detail_infor_customer.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_admin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_contact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_contact.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_feedback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_feedback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_custom_contact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_custom_contact.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_customer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_customer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_driver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_home_driver.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_customer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/fragment_list_customer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_custom_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/layout/layout_custom_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/values/preloaded_fonts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/delivery.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TVKDelivery/getdata.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/xml/network_security_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TVKDelivery/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TVKDelivery/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestCaseTemplate.xls" beforeDir="false" afterPath="$PROJECT_DIR$/TestCaseTemplate.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,19 +156,20 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1623123445929">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1623123445929" />
-    <state x="184" y="86" key="MergeDialog" timestamp="1623124025000">
+    <state x="184" y="86" key="MergeDialog" timestamp="1623125743531">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1623124025000" />
-    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1623124025018">
+    <state x="184" y="86" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1623125743531" />
+    <state x="598" y="281" key="MultipleFileMergeDialog" timestamp="1623125744606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1623124025018" />
+    <state x="598" y="281" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1623125744606" />
   </component>
 </project>
