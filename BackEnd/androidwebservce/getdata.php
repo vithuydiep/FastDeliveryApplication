@@ -228,7 +228,7 @@
 		case 'getOrderByStatus':
 					$status =$_POST['status'];
 					$iduser =$_POST['iduser'];
-					$query = "SELECT * FROM bill where state = '$status' and iduser = $iduser";
+					$query = "SELECT * FROM bill where state = '$status' and iduser = '$iduser'";
 					//$query = "SELECT * FROM bill" where state = '$status' and iduser = $iduser";
 					$data = mysqli_query($connect, $query);
 					$arrayOrder = array();
